@@ -1,0 +1,12 @@
+{
+  "name": "egypt-america-center",
+  "version": "1.0.0",
+  "description": "Egypt America Center - Mohammed Hammouda Official Website",
+  "main": "assets/js/app.js",
+  "scripts": {
+    "start": "serve ."
+  },
+  "dependencies": {
+    "mongodb": "^6.5.0"
+  }
+}

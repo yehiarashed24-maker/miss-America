@@ -33,8 +33,52 @@ class EgyptAmericanApp {
     this.initObservers();
   }
 
-  loadCatalog() {
+  async loadCatalog() {
     try {
+      // 1. Try Vercel Serverless /api/products MongoDB Sync
+      const apiRes = await fetch("/api/products").catch(() => null);
+      if (apiRes && apiRes.ok) {
+        const liveProds = await apiRes.json();
+        if (Array.isArray(liveProds) && liveProds.length > 0) {
+          EGYPT_AMERICAN_DATA.products = liveProds;
+          this.renderProducts();
+          this.renderAdminProductList();
+          return;
+        }
+      }
+
+      // 2. Check MongoDB Atlas Data API Sync
+      const config = window.EGYPT_AMERICAN_CONFIG || this.config || {};
+      const mongoUrl = config.MONGODB_API_URL || localStorage.getItem("ea_mongo_url");
+      const mongoKey = config.MONGODB_API_KEY || localStorage.getItem("ea_mongo_key");
+
+      if (mongoUrl && mongoKey) {
+        const findEndpoint = `${mongoUrl.replace(/\/$/, "")}/action/find`;
+        const res = await fetch(findEndpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "api-key": mongoKey
+          },
+          body: JSON.stringify({
+            dataSource: config.MONGODB_CLUSTER || "Cluster0",
+            database: config.MONGODB_DATABASE || "egypt_american_db",
+            collection: "products",
+            filter: {}
+          })
+        });
+        if (res.ok) {
+          const mongoData = await res.json();
+          if (mongoData && Array.isArray(mongoData.documents) && mongoData.documents.length > 0) {
+            EGYPT_AMERICAN_DATA.products = mongoData.documents;
+            this.renderProducts();
+            this.renderAdminProductList();
+            return;
+          }
+        }
+      }
+
+      // 3. Local Backup products
       const customSaved = localStorage.getItem("ea_custom_products");
       if (customSaved) {
         const customList = JSON.parse(customSaved);
@@ -51,10 +95,49 @@ class EgyptAmericanApp {
     }
   }
 
-  saveFullCatalog() {
+  async saveFullCatalog() {
     try {
       localStorage.setItem("ea_full_catalog", JSON.stringify(EGYPT_AMERICAN_DATA.products));
       localStorage.setItem("ea_custom_products", JSON.stringify(EGYPT_AMERICAN_DATA.products.filter(p => p.id && p.id.startsWith("prod-"))));
+
+      // 1. Try Vercel Serverless /api/products MongoDB Sync
+      await fetch("/api/products", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(EGYPT_AMERICAN_DATA.products)
+      }).catch(err => console.warn("Vercel MongoDB API save note:", err));
+
+      // 2. MongoDB Data API Sync
+      const config = window.EGYPT_AMERICAN_CONFIG || this.config || {};
+      const mongoUrl = config.MONGODB_API_URL || localStorage.getItem("ea_mongo_url");
+      const mongoKey = config.MONGODB_API_KEY || localStorage.getItem("ea_mongo_key");
+
+      if (mongoUrl && mongoKey) {
+        const deleteEndpoint = `${mongoUrl.replace(/\/$/, "")}/action/deleteMany`;
+        const insertEndpoint = `${mongoUrl.replace(/\/$/, "")}/action/insertMany`;
+
+        await fetch(deleteEndpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "api-key": mongoKey },
+          body: JSON.stringify({
+            dataSource: config.MONGODB_CLUSTER || "Cluster0",
+            database: config.MONGODB_DATABASE || "egypt_american_db",
+            collection: "products",
+            filter: {}
+          })
+        }).catch(() => {});
+
+        await fetch(insertEndpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "api-key": mongoKey },
+          body: JSON.stringify({
+            dataSource: config.MONGODB_CLUSTER || "Cluster0",
+            database: config.MONGODB_DATABASE || "egypt_american_db",
+            collection: "products",
+            documents: EGYPT_AMERICAN_DATA.products
+          })
+        }).catch(err => console.warn("MongoDB sync save note:", err));
+      }
     } catch (e) {
       console.warn("Catalog save note:", e);
     }

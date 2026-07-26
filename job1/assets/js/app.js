@@ -35,7 +35,6 @@ class EgyptAmericanApp {
 
   loadCatalog() {
     try {
-      // Disabled localStorage override so fresh data.js is used.
       const customSaved = localStorage.getItem("ea_custom_products");
       if (customSaved) {
         const customList = JSON.parse(customSaved);
@@ -55,8 +54,26 @@ class EgyptAmericanApp {
   saveFullCatalog() {
     try {
       localStorage.setItem("ea_full_catalog", JSON.stringify(EGYPT_AMERICAN_DATA.products));
+      localStorage.setItem("ea_custom_products", JSON.stringify(EGYPT_AMERICAN_DATA.products.filter(p => p.id && p.id.startsWith("prod-"))));
     } catch (e) {
       console.warn("Catalog save note:", e);
+    }
+  }
+
+  exportDataJsFile() {
+    try {
+      const fullDataStr = "/**\n * EGYPT AMERICA CENTER DATA CATALOG\n */\nwindow.EGYPT_AMERICAN_DATA = " + JSON.stringify(EGYPT_AMERICAN_DATA, null, 2) + ";\n";
+      const blob = new Blob([fullDataStr], { type: "text/javascript;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "data.js");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error("Export data.js failed:", e);
     }
   }
 
@@ -870,6 +887,13 @@ INSTRUCTIONS FOR ALL RESPONSES:
       });
     }
 
+    const exportCatalogBtn = document.getElementById("admin-export-catalog-btn");
+    if (exportCatalogBtn) {
+      exportCatalogBtn.addEventListener("click", () => {
+        this.exportDataJsFile();
+      });
+    }
+
     if (loginForm) {
       loginForm.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -986,6 +1010,7 @@ INSTRUCTIONS FOR ALL RESPONSES:
 
         EGYPT_AMERICAN_DATA.products.unshift(newProd);
         this.saveFullCatalog();
+        this.exportDataJsFile();
 
         addForm.reset();
         this.renderProducts();
@@ -993,7 +1018,7 @@ INSTRUCTIONS FOR ALL RESPONSES:
 
         if (addStatus) {
           addStatus.className = "form-status success";
-          addStatus.innerHTML = "✅ تم إضافة المنتج ونشره فوراً بالصورة المرفوعة على الموقع!";
+          addStatus.innerHTML = "✅ تم إضافة المنتج وتحديث الكتالوج بنجاح!";
           setTimeout(() => addStatus.innerHTML = "", 3500);
         }
       });
@@ -1139,6 +1164,7 @@ INSTRUCTIONS FOR ALL RESPONSES:
         if (confirm("هل أنت تأكد من رغبتك في حذف هذا المنتج من الكتالوج؟")) {
           EGYPT_AMERICAN_DATA.products = EGYPT_AMERICAN_DATA.products.filter(p => p.id !== id);
           this.saveFullCatalog();
+          this.exportDataJsFile();
           this.renderProducts();
           this.renderAdminProductList();
         }

@@ -3,7 +3,7 @@
  */
 const { MongoClient } = require("mongodb");
 
-const MONGODB_URI = "mongodb+srv://yehiarashed2004_db_user:kbXa2ww9NAXVMZY5@cluster0.bimlrnx.mongodb.net/?appName=Cluster0";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://yehiarashed2004_db_user:kbXa2ww9NAXVMZY5@cluster0.bimlrnx.mongodb.net/?appName=Cluster0";
 
 let cachedClient = null;
 
@@ -12,8 +12,11 @@ async function connectToDatabase() {
     return cachedClient;
   }
   const client = new MongoClient(MONGODB_URI, {
-    connectTimeoutMS: 10000,
-    socketTimeoutMS: 10000
+    connectTimeoutMS: 15000,
+    socketTimeoutMS: 15000,
+    serverSelectionTimeoutMS: 15000,
+    tls: true,
+    retryWrites: true
   });
   await client.connect();
   cachedClient = client;

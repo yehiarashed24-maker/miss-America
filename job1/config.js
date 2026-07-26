@@ -24,8 +24,8 @@ window.EGYPT_AMERICAN_CONFIG = Object.freeze({
   // Web3Forms Integration
   WEB3FORMS_ACCESS_KEY: "2c270465-085e-4249-8420-8b1dd5f11626", // "
 
-  // MongoDB Atlas Integration (Live Real-time Sync for All Vercel Visitors)
-  MONGODB_URI: "mongodb+srv://yehiarashed2004_db_user:kbXa2ww9NAXVMZY5@cluster0.bimlrnx.mongodb.net/?appName=Cluster0",
+  // MongoDB Atlas Integration (Uses Secured Environment Variables on Vercel)
+  MONGODB_URI: "",
   MONGODB_API_URL: "",
   MONGODB_API_KEY: "",
   MONGODB_CLUSTER: "Cluster0",

@@ -3,7 +3,15 @@
  */
 const { MongoClient } = require("mongodb");
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://yehiarashed2004_db_user:kbXa2ww9NAXVMZY5@cluster0.bimlrnx.mongodb.net/?appName=Cluster0";
+const defaultUri = "mongodb+srv://yehiarashed2004_db_user:kbXa2ww9NAXVMZY5@cluster0.bimlrnx.mongodb.net/?appName=Cluster0";
+
+function getMongoUri() {
+  const envUri = (process.env.MONGODB_URI || "").trim();
+  if (envUri.startsWith("mongodb://") || envUri.startsWith("mongodb+srv://")) {
+    return envUri;
+  }
+  return defaultUri;
+}
 
 let cachedClient = null;
 
@@ -11,7 +19,8 @@ async function connectToDatabase() {
   if (cachedClient) {
     return cachedClient;
   }
-  const client = new MongoClient(MONGODB_URI, {
+  const uri = getMongoUri();
+  const client = new MongoClient(uri, {
     connectTimeoutMS: 15000,
     socketTimeoutMS: 15000,
     serverSelectionTimeoutMS: 15000,

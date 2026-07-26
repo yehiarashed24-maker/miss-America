@@ -796,36 +796,76 @@ const EGYPT_AMERICAN_DATA = {
   // Knowledge base for local AI Assistant responses
   aiKnowledgeBase: [
     {
-      keywords: ["egypt", "american", "america", "center", "hammouda", "hamouda", "hammoud", "مصر", "أمريكا", "حمودة", "محمد", "مركز", "شركة", "عن", "من هو", "mohamed", "mohammed"],
-      response: "Mohamed Hammouda (محمد حمودة) is the esteemed founder, leader, and managing director of Egypt America Center (مركز مصر أمريكا - محمد حمودة للاستيراد والتصدير والوكالات التجارية), established in 1990. Under his leadership, the company has become a premier authorized commercial agency for Center Circle (Taiwan), REL-TEX (Taiwan), Megadyne (Italy), Kauo Heng (Taiwan), and NBSMG (China)."
+      keywords: ["location", "address", "where", "map", "maps", "مكان", "مكانكم", "فين", "المنصورة", "عنوان", "عنوانكم", "الموقع", "موقعكم", "ازاي اوصل", "شارع", "مسجد", "مساكن", "التوحيد", "الشناوي", "地址", "位置"],
+      response: {
+        ar: "يقع مقر **مركز مصر أمريكا - محمد حمودة** في العنوان التالي:\n📍 **مساكن الشناوي، بجانب مسجد التوحيد، عمارة 2، مدخل أ، المنصورة، مصر.**\n\n🗺️ **رابط الموقع المباشر على Google Maps:**\nhttps://maps.app.goo.gl/nto3JL4cVCN65D776\n\n📱 **هاتف / واتساب المبيعات:** +201001339300\n✉️ **البريد الإلكتروني الرسمي:** info@egypt-american.com",
+        en: "Egypt America Center - Mohammed Hammouda Headquarters is located at:\n📍 **Masaken El Shennawy, Next to Al Tawhid Mosque, Building 2, Entrance A, Mansoura, Egypt.**\n\n🗺️ **Google Maps Location Link:**\nhttps://maps.app.goo.gl/nto3JL4cVCN65D776\n\n📱 **Phone / WhatsApp:** +20 10 01339300\n✉️ **Official Email:** info@egypt-american.com",
+        zh: "Egypt America Center - 穆罕默德·哈مودة 总部地址：\n📍 **埃及曼苏拉市，Al Tawhid 清真寺旁，El Shennawy 住宅区，2栋，A入口。**\n\n🗺️ **Google 地图导航：**\nhttps://maps.app.goo.gl/nto3JL4cVCN65D776\n\n📱 **电话 / WhatsApp：** +20 10 01339300\n✉️ **官方邮箱：** info@egypt-american.com"
+      }
     },
     {
-      keywords: ["brand", "brands", "distributor", "official", "agency", "وكيل", "علامة", "品牌", "代理"],
-      response: "Egypt America Center - Mohammed Hammouda is the official authorized global commercial agency for Center Circle (Taiwan), REL-TEX (Taiwan), Megadyne (Italy), Kauo Heng (Taiwan), and NBSMG (China)."
+      keywords: ["egypt", "american", "america", "center", "hammouda", "hamouda", "hammoud", "مصر", "أمريكا", "حمودة", "محمد", "مركز", "شركة", "عن", "من هو", "تاريخ", "تأسس", "mohamed", "mohammed"],
+      response: {
+        ar: "تأسس **مركز مصر أمريكا - محمد حمودة** عام 1990 بمدينة المنصورة، ويترأسه **الأستاذ محمد حمودة**.\nنحن الوكيل التجاري والموزع المعتمد لأبرز العلامات التجارية العالمية في آلات النسيج وقطع الغيار الأصلية من تايوان وإيطاليا والصين (Center Circle, Megadyne, Kauo Heng, NBSMG, REL-TEX).\n\n📍 **المقر الرئيسي:** مساكن الشناوي، بجانب مسجد التوحيد، عمارة 2، مدخل أ، المنصورة، مصر.\n📞 **المبيعات والدعم:** +201001339300",
+        en: "Established in 1990, **Egypt America Center - Mohammed Hammouda** is led by founder Mr. Mohammed Hammouda. We are the authorized global commercial agency for leading international textile machinery and spare parts manufacturers (Center Circle, Megadyne, Kauo Heng, NBSMG, REL-TEX).\n\n📍 **HQ Address:** Masaken El Shennawy, Next to Al Tawhid Mosque, Building 2, Entrance A, Mansoura, Egypt.\n📞 **Sales & Hotline:** +20 10 01339300",
+        zh: "Egypt America Center 由创始人 Mohammed Hammouda 先生于 1990 年建立，是 Center Circle、Megadyne、Kauo Heng、NBSMG 和 REL-TEX 等知名品牌的官方授权代理商。"
+      }
     },
     {
-      keywords: ["megadyne", "belt", "timing belt", "conveyor", "سيور", "حزام", "同步带", "皮带"],
-      response: "We supply 100% original Megadyne (Italy) timing belts, polyurethane Megapower belts, and rubber drive belts engineered specifically for high-torque textile machinery."
+      keywords: ["brand", "brands", "distributor", "official", "agency", "وكيل", "وكالات", "علامة", "علامات", "شركاء", "品牌", "代理"],
+      response: {
+        ar: "نفخر في **مركز مصر أمريكا - محمد حمودة** بكوننا الوكيل المعتمد والموزع الرسمي للشركات العالمية التالية:\n\n1. 🇹🇼 **Center Circle (تايوان):** آلات التريكو الدائرية والأسطوانات عالية الدقة.\n2. 🇹🇼 **REL-TEX (تايوان):** آلات التريكو الدائرية عالية السرعة.\n3. 🇮🇹 **Megadyne (إيطاليا):** سيور التوقيت الصناعية الفاخرة (Polyurethane & Rubber Belts).\n4. 🇹🇼 **Kauo Heng (تايوان):** آلات التريكو المسطحة المحوسبة (Collar & 3D Shoe Upper Machines).\n5. 🇨🇳 **NBSMG (الصين):** المحامل الصناعية الدقيقة ورمان البلي (Precision Bearings).\n\n📞 للاستفسارات: +201001339300",
+        en: "Egypt America Center - Mohammed Hammouda is the official authorized global commercial agency for:\n1. 🇹🇼 **Center Circle (Taiwan):** High-speed circular knitting machines & alloy cylinders.\n2. 🇹🇼 **REL-TEX (Taiwan):** High-speed circular knitting machinery.\n3. 🇮🇹 **Megadyne (Italy):** Polyurethane & rubber timing belts.\n4. 🇹🇼 **Kauo Heng (Taiwan):** Computerized flat knitting machine systems.\n5. 🇨🇳 **NBSMG (China):** Precision industrial bearings.\n\n📞 Inquiry Hotline: +20 10 01339300",
+        zh: "我们是 Center Circle (台湾)、REL-TEX (台湾)、Megadyne (意大利)、Kauo Heng (台湾) 及 NBSMG (中国) 的官方授权分销与商业代理机构。"
+      }
     },
     {
-      keywords: ["kauo heng", "flat knitting", "collar", "shoe upper", "تريكو مسطح", "كاو هينغ", "横机", "高亨"],
-      response: "Kauo Heng (Taiwan) computerized flat knitting machines excel in high-speed sweater panel, collar trim, and 3D shoe upper production. Models include ADF-530 and KH-323."
+      keywords: ["megadyne", "belt", "timing belt", "conveyor", "سيور", "حزام", "ميغاداين", "ميجاداين", "سير", "同步带", "皮带"],
+      response: {
+        ar: "نوفر سيور توقيت صناعية أصليّة 100% من شركة **Megadyne الإيطالية** المصنعة من البولي يوريثان والمطاط (طرازات AT10, T10, RPP8, Megapower) المخصصة للتحمل العالي وتطبيقات آلات النسيج والتشغيل الصناعي.\n\n📞 اطلب العرض الفوري عبر الواتساب: +201001339300",
+        en: "We supply 100% genuine Megadyne (Italy) timing belts, polyurethane Megapower belts, and rubber drive belts (AT10, T10, RPP8) engineered specifically for high-torque textile machinery.",
+        zh: "我们提供 100% 原装意大利 Megadyne 工业同步带、聚氨酯 Megapower 带及高耐磨橡胶传动带。"
+      }
     },
     {
-      keywords: ["center circle", "circular knitting", "cylinder", "تريكو دائرية", "سنتر سيركل", "大圆机", "针筒"],
-      response: "Center Circle (Taiwan) is premier for high-speed single/double jersey circular knitting machines and precision alloy cylinders available in 18G through 36G gauges."
+      keywords: ["kauo heng", "flat knitting", "collar", "shoe upper", "تريكو مسطح", "كاو هينغ", "جاكار", "ياقات", "横机", "高亨"],
+      response: {
+        ar: "آلات التريكو المسطحة المحوسبة من **Kauo Heng (تايوان)** ممتازة في إنتاج الياقات النسيجية، الأقمشة المحبوكة، وأوجه الأحذية ثلاثية الأبعاد (3D Shoe Uppers) بأعلى دقة وسرعة تشغيلية.",
+        en: "Kauo Heng (Taiwan) computerized flat knitting machines excel in high-speed sweater panel, collar trim, and 3D shoe upper production.",
+        zh: "台湾高亨 (Kauo Heng) 电脑横机非常适合高速生产领口、毛衫面料及 3D 鞋面。"
+      }
     },
     {
-      keywords: ["nbsmg", "bearing", "bearings", "محامل", "رمان بلي", "轴承"],
-      response: "NBSMG offers high-precision ABEC-5 ball bearings, needle bearings, cam followers, and linear guide blocks designed for high-RPM textile machine shafts."
+      keywords: ["center circle", "circular knitting", "cylinder", "تريكو دائرية", "سنتر سيركل", "سلندر", "أسطوانة", "大圆机", "针筒"],
+      response: {
+        ar: "تتميز **Center Circle (تايوان)** بإنتاج آلات التريكو الدائرية عالية السرعة، بالإضافة إلى الأسطوانات والسلندرات المصنوعة من السبايك عالية المتانة بمقاسات من 18G حتى 36G.",
+        en: "Center Circle (Taiwan) offers premier high-speed circular knitting machines and precision alloy cylinders (18G to 36G gauges).",
+        zh: "Center Circle (台湾) 专注于高速单双面大圆机及 18G-36G 精密针筒。"
+      }
     },
     {
-      keywords: ["shipping", "delivery", "logistics", "export", "شحن", "توصيل", "运输", "物流"],
-      response: "We offer express air freight and ocean container shipping worldwide. Critical spare parts are dispatched within 24 hours from our Cairo or Taichung fulfillment hubs."
+      keywords: ["nbsmg", "bearing", "bearings", "محامل", "رمان بلي", "رولمان", "轴承"],
+      response: {
+        ar: "نوفر محامل ورمان بلي دقيق (ABEC-5, Needle bearings, Cam followers) من شركة **NBSMG** المخصصة للسرعات العالية ومقاومة الإجهاد الصناعي في مصانع الغزل والنسيج.",
+        en: "NBSMG supplies high-precision ABEC-5 ball bearings, needle bearings, cam followers, and linear guide blocks for high-RPM textile machine shafts.",
+        zh: "NBSMG 提供用于高转速纺织机械的 ABEC-5 精密轴承、滚针轴承及凸轮随动件。"
+      }
     },
     {
-      keywords: ["contact", "quote", "sales", "phone", "email", "whatsapp", "اتصال", "تواصل", "سعر", "联系", "报价"],
-      response: "You can reach Egypt-American sales team at +20 10 01339300, WhatsApp +20 10 01339300, or email info@egypt-american.com. Or submit a request via our Contact page!"
+      keywords: ["shipping", "delivery", "logistics", "export", "شحن", "توصيل", "استيراد", "تصدير", "运输", "物流"],
+      response: {
+        ar: "نقدم خدمات الشحن الجوي والبحري السريع عالمياً، مع إمكانية التوصيل الفوري لقطع الغيار الحساسة خلال 24 ساعة من مستودعاتنا بالمنصورة لضمان عدم توقف خطوط الإنتاج.",
+        en: "We offer express air freight and ocean container shipping worldwide. Critical spare parts are dispatched within 24 hours from our fulfillment hub.",
+        zh: "我们提供全球航空与海运服务，关键零配件可在 24 小时内快速发货。"
+      }
+    },
+    {
+      keywords: ["contact", "quote", "sales", "phone", "email", "whatsapp", "اتصال", "تواصل", "سعر", "استفسار", "هاتف", "واتساب", "إيميل", "联系", "报价"],
+      response: {
+        ar: "يمكنك التواصل المباشر مع فريق مبيعات **مركز مصر أمريكا - محمد حمودة**:\n\n📱 **هاتف / واتساب:** +201001339300\n✉️ **بريد إلكتروني:** info@egypt-american.com\n📍 **العنوان:** مساكن الشناوي، بجانب مسجد التوحيد، عمارة 2، مدخل أ، المنصورة، مصر.",
+        en: "You can reach Egypt-American sales team at:\n📱 **Phone / WhatsApp:** +20 10 01339300\n✉️ **Email:** info@egypt-american.com\n📍 **Address:** Masaken El Shennawy, Next to Al Tawhid Mosque, Building 2, Entrance A, Mansoura, Egypt.",
+        zh: "欢迎联系 Egypt-American 销售团队：\n📱 **电话 / WhatsApp：** +20 10 01339300\n✉️ **邮箱：** info@egypt-american.com\n📍 **地址：** 埃及曼苏拉市 El Shennawy 住宅区 2栋 A入口"
+      }
     }
   ]
 };

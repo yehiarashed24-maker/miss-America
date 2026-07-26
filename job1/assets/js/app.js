@@ -686,10 +686,10 @@ class EgyptAmericanApp {
       console.warn("Submission transport note:", err);
     }
 
-    // Save local backup (Keep only the latest 3 inquiries to avoid clutter)
+    // Save local backup (Stores all incoming quote requests and messages up to 50)
     let saved = JSON.parse(localStorage.getItem("ea_inquiries") || "[]");
     saved.unshift(payload);
-    if (saved.length > 3) saved = saved.slice(0, 3);
+    if (saved.length > 50) saved = saved.slice(0, 50);
     localStorage.setItem("ea_inquiries", JSON.stringify(saved));
 
     this.renderAdminInquiries();
@@ -798,26 +798,33 @@ class EgyptAmericanApp {
         content: `You are the Official AI Industrial Specialist for "Egypt America Center - Mohammed Hammouda" (مركز مصر أمريكا - محمد حمودة للاستيراد والتصدير والوكالات التجارية).
 
 COMPANY & LEADERSHIP PROFILE:
-- Founder & Managing Director: Mohammed Hammouda (محمد حمودة) - Prominent industrial pioneer, founder, and managing director of Egypt America Center.
+- Company Name: Egypt America Center - Mohammed Hammouda (مركز مصر أمريكا - محمد حمودة للاستيراد والتصدير والوكالات التجارية)
+- Founder & Managing Director: Mohammed Hammouda (محمد حمودة) - Prominent industrial pioneer, founder, and managing director.
 - Established: 1990 (Over 35+ years of leadership in industrial textile machinery, commercial agencies, and global spare parts import/export).
-- Core Business: Official global commercial agencies, authorized industrial machinery distribution, textile factory supplies, and express global logistics.
-- Authorized Brands & Agencies:
-  1. Center Circle (Taiwan) - High-Speed Circular Knitting Machinery & Precision Alloy Cylinders.
-  2. REL-TEX (Taiwan) - Premium Circular Knitting Machines.
-  3. Megadyne (Italy) - High-Precision Polyurethane & Rubber Timing Belts (AT10, T10, RPP8, Megapower).
-  4. Kauo Heng (Taiwan) - Computerized Flat Knitting Machinery Systems (3D Shoe uppers, collars, sweaters).
-  5. NBSMG (China) - Precision Industrial Bearings (ABEC-5, Needle bearings, Cam followers).
-- Contact & Support Details:
-  - Phone / WhatsApp: +20 10 01339300
-  - Email: info@egypt-american.com
-  - HQ Location: Mansoura / Egypt
-  - Product Catalog & Specs Context: ${contextStr}
+- EXACT HEADQUARTERS ADDRESS: مساكن الشناوي، بجانب مسجد التوحيد، عمارة 2، مدخل أ، المنصورة، مصر (Masaken El Shennawy, Next to Al Tawhid Mosque, Building 2, Entrance A, Mansoura, Egypt).
+- GOOGLE MAPS NAVIGATION: https://maps.app.goo.gl/nto3JL4cVCN65D776
+- DIRECT PHONE / WHATSAPP: +20 10 01339300
+- OFFICIAL EMAIL: info@egypt-american.com
 
-INSTRUCTIONS FOR ALL RESPONSES:
-1. ALWAYS respond fluently in the EXACT SAME LANGUAGE the user speaks (Arabic, English, French, Chinese, German, Turkish, Spanish, Italian, etc.).
-2. Be extremely polite, professional, warm, engaging, and knowledgeable about Mohammed Hammouda, the company history since 1990, industrial machinery specs, spare parts, agencies, custom quote requests, and contact options.
-3. If asked about Mohamed Hammouda (or variations like Mohamed Hamouda / Mohamed Hammoud / محمد حمودة), proudly introduce him as the esteemed founder and leader of Egypt America Center, established in 1990.
-4. Answer all technical and general questions accurately and warmly without rigid refusals.`
+AUTHORIZED BRANDS & AGENCIES:
+1. Center Circle (Taiwan) - High-Speed Circular Knitting Machinery & Precision Alloy Cylinders.
+2. REL-TEX (Taiwan) - Premium Circular Knitting Machines.
+3. Megadyne (Italy) - High-Precision Polyurethane & Rubber Timing Belts (AT10, T10, RPP8, Megapower).
+4. Kauo Heng (Taiwan) - Computerized Flat Knitting Machinery Systems (3D Shoe uppers, collars, sweaters).
+5. NBSMG (China) - Precision Industrial Bearings (ABEC-5, Needle bearings, Cam followers).
+
+PRODUCT CATALOG & SPECS CONTEXT:
+${contextStr}
+
+STRICT INSTRUCTIONS FOR ARABIC & MULTILINGUAL RESPONSES:
+1. ALWAYS respond fluently in the EXACT SAME LANGUAGE the user speaks (Arabic, English, French, Chinese, etc.).
+2. When answering in Arabic:
+   - Write in clear, elegant Modern Standard Arabic (فصحى راقية ومفهومة وممثلة للشركة بشكل احترافي).
+   - DO NOT output random or erroneous diacritics (لا تضع تشكيلاً عشوائياً أو خاطئاً على الكلمات مثل "مَسَكَن أَلشِنَوَاي" أو "مسعّبٍ").
+   - Structure responses with clear bullet points, emojis, and bold headlines.
+   - Always state the headquarters address correctly: "مساكن الشناوي، بجانب مسجد التوحيد، عمارة 2، مدخل أ، المنصورة، مصر" (The mosque is "مسجد التوحيد", NOT "مسجد الوحدة").
+3. Be extremely polite, professional, warm, engaging, and knowledgeable about Mohammed Hammouda, company history since 1990, machinery specs, spare parts, agencies, custom quotes, and contact details.
+4. Answer technical questions directly and clearly.`
       },
       {
         role: "welcome",
@@ -827,6 +834,25 @@ INSTRUCTIONS FOR ALL RESPONSES:
     this.renderAIMessages();
   }
 
+  formatAIMessage(content) {
+    if (!content) return "";
+    let formatted = content
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+
+    // Bold formatting **text**
+    formatted = formatted.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+
+    // Convert raw URLs to clickable links
+    formatted = formatted.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener" style="color: var(--accent-gold); text-decoration: underline; word-break: break-all;">$1</a>');
+
+    // Convert newlines to <br>
+    formatted = formatted.replace(/\n/g, "<br>");
+
+    return formatted;
+  }
+
   renderAIMessages(isTyping = false) {
     const box = document.getElementById("ai-chat-messages");
     if (!box) return;
@@ -834,7 +860,10 @@ INSTRUCTIONS FOR ALL RESPONSES:
     this.aiMessages.filter(m => m.role !== "system").forEach(m => {
       const msgDiv = document.createElement("div");
       msgDiv.className = `ai-message ${m.role === "user" ? "user-msg" : "bot-msg"}`;
-      msgDiv.innerHTML = `<div class="msg-bubble">${m.content}</div>`;
+      const contentHtml = m.role === "user"
+        ? m.content.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>")
+        : this.formatAIMessage(m.content);
+      msgDiv.innerHTML = `<div class="msg-bubble">${contentHtml}</div>`;
       box.appendChild(msgDiv);
     });
 
@@ -862,56 +891,80 @@ INSTRUCTIONS FOR ALL RESPONSES:
           .filter(m => m.role === "system" || m.role === "user" || m.role === "assistant")
           .map(m => ({ role: m.role, content: m.content }));
 
-        const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-          method: "POST",
-          headers: {
-            "Authorization": `Bearer ${apiKey}`,
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            model: config.OPENROUTER_MODEL || "openai/gpt-oss-20b:free",
-            messages: apiPayloadMessages
-          })
-        });
+        const candidateModels = [
+          config.OPENROUTER_MODEL,
+          "meta-llama/llama-3.3-70b-instruct:free",
+          "google/gemini-2.0-flash-lite-preview-02-05:free",
+          "qwen/qwen-2.5-72b-instruct:free"
+        ].filter((v, i, a) => v && a.indexOf(v) === i);
 
-        if (res.ok) {
-          const data = await res.json();
-          const reply = data.choices && data.choices[0] && data.choices[0].message ? data.choices[0].message.content : null;
-          if (reply) {
-            this.aiMessages.push({ role: "assistant", content: reply });
-            this.renderAIMessages(false);
-            return;
+        let reply = null;
+
+        for (const modelName of candidateModels) {
+          try {
+            const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+              method: "POST",
+              headers: {
+                "Authorization": `Bearer ${apiKey}`,
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                model: modelName,
+                messages: apiPayloadMessages
+              })
+            });
+
+            if (res.ok) {
+              const data = await res.json();
+              reply = data.choices && data.choices[0] && data.choices[0].message ? data.choices[0].message.content : null;
+              if (reply) break;
+            } else {
+              const errText = await res.text();
+              console.warn(`OpenRouter API model ${modelName} returned non-200 status:`, res.status, errText);
+            }
+          } catch (mErr) {
+            console.warn(`OpenRouter model ${modelName} connection note:`, mErr);
           }
-        } else {
-          const errText = await res.text();
-          console.warn("OpenRouter API returned non-200 status:", res.status, errText);
+        }
+
+        if (reply) {
+          this.aiMessages.push({ role: "assistant", content: reply });
+          this.renderAIMessages(false);
+          return;
         }
       } catch (err) {
         console.warn("OpenRouter API connection note:", err);
       }
     }
 
-    // Local Smart Industrial AI Match (Fallback if OpenRouter is unreachable)
+    // Local Smart Industrial AI Match (Fallback if OpenRouter is unreachable or rate-limited)
     setTimeout(() => {
       const q = userText.toLowerCase();
       const isArabic = this.currentLang === "ar";
       const isChinese = this.currentLang === "zh";
 
-      let reply = "";
+      let rawReply = null;
 
       for (const item of EGYPT_AMERICAN_DATA.aiKnowledgeBase) {
         if (item.keywords.some(k => q.includes(k))) {
-          reply = item.response;
+          rawReply = item.response;
           break;
         }
       }
 
-      if (!reply) {
+      let reply = "";
+      if (rawReply) {
+        if (typeof rawReply === "object") {
+          reply = rawReply[this.currentLang] || rawReply.ar || rawReply.en;
+        } else {
+          reply = rawReply;
+        }
+      } else {
         reply = isArabic 
-          ? "أهلاً بك! بصفتي المساعد الذكي لمركز مصر أمريكا - محمد حمودة، يمكنني مساعدتك في كافة ما يتعلق بآلات النسيج، قطع الغيار (سيور Megadyne، محامل NBSMG، أسطوانات Center Circle)، والوكالات التجارية. لأي استفسار آخر يرجى التواصل معنا عبر البريد info@egypt-american.com أو واتساب 01001339300."
+          ? "أهلاً بك! بصفتي المساعد الذكي لمركز مصر أمريكا - محمد حمودة، يمكنني مساعدتك في كافة ما يتعلق بآلات النسيج، قطع الغيار (سيور Megadyne، محامل NBSMG، أسطوانات Center Circle)، والوكالات التجارية.\n\n📍 **العنوان:** مساكن الشناوي، بجانب مسجد التوحيد، عمارة 2، مدخل أ، المنصورة، مصر.\n🗺️ **خرائط جوجل:** https://maps.app.goo.gl/nto3JL4cVCN65D776\n📞 **هاتف / واتساب:** +201001339300\n✉️ **بريد إلكتروني:** info@egypt-american.com"
           : isChinese
-          ? "您好！我是 Egypt America Center 智能 AI 助手。我可以解答有关纺织机械、Megadyne 备件及代理的信息。"
-          : "Hello! I am the Egypt America Center Specialist AI. I can assist you with details regarding our textile machinery, spare parts (Megadyne belts, NBSMG bearings), and authorized commercial agencies.";
+          ? "您好！我是 Egypt America Center 智能 AI 助手。我可以解答有关纺织机械、Megadyne 备件及代理的信息。\n地址：埃及曼苏拉市 El Shennawy 住宅区 2栋 A入口\n电话：+20 10 01339300"
+          : "Hello! I am the Egypt America Center Specialist AI. I can assist you with details regarding our textile machinery, spare parts (Megadyne belts, NBSMG bearings), and authorized commercial agencies.\nAddress: Masaken El Shennawy, Next to Al Tawhid Mosque, Building 2, Entrance A, Mansoura, Egypt\nPhone/WhatsApp: +20 10 01339300";
       }
 
       this.aiMessages.push({ role: "assistant", content: reply });
@@ -1118,31 +1171,117 @@ INSTRUCTIONS FOR ALL RESPONSES:
       .replace(/'/g, "&#039;");
   }
 
+  getInitialSampleInquiries() {
+    const now = Date.now();
+    return [
+      {
+        id: "inq_sample_1",
+        created_at: new Date(now - 10 * 60 * 1000).toISOString(),
+        name: "مهندس أحمد التمامي",
+        company: "شركة الدقهلية للغزل والنسيج",
+        phone: "+201002345678",
+        email: "ahmed.altamami@dagahlia-textiles.com",
+        product: "سيور توقيت Megadyne AT10-1250 بولي يوريثان",
+        message: "نرجو موافاتنا بعرض سعر كمي لعدد 50 سير توقيت Megadyne طراز AT10 مع التوصيل لمصنعنا بالمنصورة.",
+        form_type: "طلب عرض سعر رسمي",
+        lang: "ar"
+      },
+      {
+        id: "inq_sample_2",
+        created_at: new Date(now - 60 * 60 * 1000).toISOString(),
+        name: "مهندس محمود الشناوي",
+        company: "مصانع الشناوي للتريكو والملابس",
+        phone: "+201019876543",
+        email: "m.elshennawy@shennawy-textiles.com",
+        product: "آلة تريكو مسطحة محوسبة Kauo Heng ADF-530",
+        message: "نريد الاستفسار عن كفالة ومواصفات وتكلفة توريد 2 آلة تريكو مسطحة كاو هينغ ADF-530 لإنتاج الياقات النسيجية.",
+        form_type: "طلب عرض سعر رسمي",
+        lang: "ar"
+      },
+      {
+        id: "inq_sample_3",
+        created_at: new Date(now - 3 * 60 * 60 * 1000).toISOString(),
+        name: "الحاج طارق عبد العزيز",
+        company: "المؤسسة الحديثة للغزل والتطريز",
+        phone: "+201098765432",
+        email: "tarek@modern-embroidery.eg",
+        product: "أسطوانة تريكو دائرية Center Circle 28G",
+        message: "نحتاج أسطوانة (سلندر) تريكو دائرية سنتر سيركل تايواني قياس 28G عالية الدقة، يرجى التواصل هاتفياً.",
+        form_type: "طلب عرض سعر رسمي",
+        lang: "ar"
+      },
+      {
+        id: "inq_sample_4",
+        created_at: new Date(now - 5 * 60 * 60 * 1000).toISOString(),
+        name: "المهندس حسن الجمال",
+        company: "المجمعات الصناعية الكبرى",
+        phone: "+201005544332",
+        email: "hassan.elgammal@industrial-complex.com",
+        product: "محامل ورمان بلي دقيق NBSMG ABEC-5",
+        message: "نود الحصول على الكتالوج الفني لقطع غيار ومحامل NBSMG بالإضافة لمعلومات الشحن المباشر للمستودعات.",
+        form_type: "استفسار صفحة اتصل بنا",
+        lang: "ar"
+      },
+      {
+        id: "inq_sample_5",
+        created_at: new Date(now - 24 * 60 * 60 * 1000).toISOString(),
+        name: "السيد خالد منصور",
+        company: "النصر لآلات النسيج والوكالات",
+        phone: "+201012349876",
+        email: "khaled@alnasr-machinery.com",
+        product: "آلة تريكو دائرية عالية السرعة REL-TEX RT-900",
+        message: "يرجى إرسال عرض سعر رسمي شاملاً الجمارك والتوصيل لآلة التريكو الدائرية REL-TEX موديل RT-900.",
+        form_type: "طلب عرض سعر رسمي",
+        lang: "ar"
+      }
+    ];
+  }
+
   renderAdminInquiries() {
     const container = document.getElementById("admin-inquiries-list");
     const countEl = document.getElementById("admin-stat-inquiries");
     if (!container) return;
 
-    const inquiries = JSON.parse(localStorage.getItem("ea_inquiries") || "[]");
+    let stored = localStorage.getItem("ea_inquiries");
+    let inquiries = [];
+    if (!stored) {
+      inquiries = this.getInitialSampleInquiries();
+      localStorage.setItem("ea_inquiries", JSON.stringify(inquiries));
+    } else {
+      try {
+        inquiries = JSON.parse(stored || "[]");
+      } catch (e) {
+        inquiries = [];
+      }
+    }
+
     if (countEl) countEl.textContent = inquiries.length;
 
     if (inquiries.length === 0) {
       container.innerHTML = `
         <div style="padding: 24px; text-align: center; color: var(--text-dark-secondary); background: rgba(255,255,255,0.02); border-radius: 12px; border: 1px dashed var(--border-glass-dark);">
-          📩 لا توجد رسائل أو طلبات جديدة حالياً. أحدث الاستفسارات ستظهر هنا تلقائياً.
+          📩 لا توجد رسائل أو طلبات جديدة حالياً. أحدث الاستفسارات وطلبات الأسعار ستظهر هنا تلقائياً.
         </div>
       `;
       return;
     }
 
-    container.innerHTML = inquiries.map((inq, idx) => {
+    // Display the latest 5 messages (from Contact Us or Quote Request)
+    const latestInquiries = inquiries.slice(0, 5);
+
+    container.innerHTML = latestInquiries.map((inq, idx) => {
       const name = this.escapeHTML(inq.name || "زائر بدون اسم");
       const company = this.escapeHTML(inq.company || "-");
       const phone = this.escapeHTML(inq.phone || "-");
       const email = this.escapeHTML(inq.email || "-");
       const product = this.escapeHTML(inq.product || "استفسار عام");
       const message = this.escapeHTML(inq.message || "لا توجد تفاصيل إضافية");
-      const formType = this.escapeHTML(inq.form_type || "طلب رسمي");
+      const rawFormType = (inq.form_type || "").toLowerCase();
+      const isQuote = rawFormType.includes("quote") || rawFormType.includes("عرض سعر") || rawFormType.includes("modal");
+      const badgeStyle = isQuote
+        ? "background: rgba(255, 107, 0, 0.18); color: #ff6b00; border: 1px solid rgba(255, 107, 0, 0.4);"
+        : "background: rgba(0, 136, 204, 0.18); color: #0088cc; border: 1px solid rgba(0, 136, 204, 0.4);";
+      const badgeLabel = isQuote ? "📋 طلب عرض سعر رسمي" : "💬 استفسار تواصل";
       const dateStr = inq.created_at ? new Date(inq.created_at).toLocaleString("ar-EG") : "الآن";
       const cleanPhone = (inq.phone || "").replace(/\D/g, "");
 
@@ -1151,7 +1290,7 @@ INSTRUCTIONS FOR ALL RESPONSES:
           <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;">
             <div style="display: flex; align-items: center; gap: 10px;">
               <span class="gold-text" style="font-weight: 800; font-size: 1.05rem;">#${idx + 1} ${name}</span>
-              <span style="font-size: 0.8rem; padding: 3px 10px; border-radius: 20px; background: rgba(234, 179, 8, 0.15); color: var(--accent-gold); font-weight: 700;">${formType}</span>
+              <span style="font-size: 0.8rem; padding: 4px 12px; border-radius: 20px; font-weight: 700; ${badgeStyle}">${badgeLabel}</span>
             </div>
             <span style="font-size: 0.8rem; color: var(--text-dark-secondary);">${dateStr}</span>
           </div>

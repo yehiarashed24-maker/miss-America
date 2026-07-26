@@ -19,7 +19,7 @@
 window.EGYPT_AMERICAN_CONFIG = Object.freeze({
   // OpenRouter API Configuration
   OPENROUTER_API_KEY: "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", // "
-  OPENROUTER_MODEL: "openai/gpt-oss-20b:free",
+  OPENROUTER_MODEL: "meta-llama/llama-3.3-70b-instruct:free",
 
   // Web3Forms Integration
   WEB3FORMS_ACCESS_KEY: "2c270465-085e-4249-8420-8b1dd5f11626", // "

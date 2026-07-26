@@ -1,0 +1,136 @@
+{
+  "nav": {
+    "brand": "Egypt America Center",
+    "sub": "Mohammed Hammouda",
+    "home": "首页",
+    "about": "关于我们",
+    "products": "产品中心",
+    "brands": "品牌代理",
+    "contact": "联系我们",
+    "request_quote": "索取报价"
+  },
+  "hero": {
+    "badge": "埃及美洲中心 - 穆罕默德·哈مودة • 始于1990",
+    "title_1": "EGYPT AMERICA CENTER",
+    "title_2": "MOHAMMED HAMMOUDA",
+    "description": "进出口与商业代理 - 全球领先的高速大圆机、电脑横机系统、高品质同步带及工业精密轴承国际供应商。",
+    "cta_machinery": "浏览纺织机械",
+    "cta_parts": "查找零部件"
+  },
+  "stats": {
+    "years": "年行业经验 (始于1990)",
+    "countries": "出口国家与地区",
+    "brands": "国际品牌代理",
+    "parts": "现货零配件库存",
+    "oem": "原装正品零配件"
+  },
+  "intro": {
+    "badge": "企业概况",
+    "title": "赋能全球纺织制造与精密工程",
+    "subtitle": "Egypt America Center - Mohammed Hammouda 代表来自台湾、意大利及中国精工制造的顶尖纺织装备。",
+    "card1_title": "100% 原厂品质认证",
+    "card1_desc": "直接引自官方合作工厂的正品备件与设备。",
+    "card2_title": "24/7 全球物流响应",
+    "card2_desc": "关键零配件全球快速发货，保障工厂持续生产。",
+    "card3_title": "整机安装与调试",
+    "card3_desc": "资深工程师团队提供现场安装、技术培训与维护服务。"
+  },
+  "partners": {
+    "badge": "官方授权代理",
+    "title": "全球知名合作品牌",
+    "subtitle": "我们荣幸成为国际领先纺织机械与工业零部件制造商的授权代理商。",
+    "marquee_title": "✧ 全球顶级授权合作机构 ✧"
+  },
+  "products": {
+    "badge": "机械与零部件目录",
+    "title": "高性能纺织工业解决方案",
+    "subtitle": "探索我们全面涵盖的高效率纺织机械及原厂精密零配件系列。",
+    "cat_all": "全部产品",
+    "cat_machinery": "纺织机械",
+    "cat_spare_parts": "工业零部件",
+    "search_placeholder": "按产品名称、型号或OEM编号搜索...",
+    "view_details": "查看技术参数",
+    "inquire_now": "在线询价"
+  },
+  "why": {
+    "badge": "技术与精工优势",
+    "title": "为什么工厂信任 Egypt America Center",
+    "reason1_title": "微米级精准度",
+    "reason1_desc": "微米级精密的针筒与高耐磨针织件。",
+    "reason2_title": "庞大的零部件现货",
+    "reason2_desc": "超过15,000种常用备件型号，即订即发。",
+    "reason3_title": "原厂官方质保",
+    "reason3_desc": "获得品牌原厂直接质保与正品零配件支持。",
+    "reason4_title": "专业工程技术支持",
+    "reason4_desc": "提供远程与现场技术指导，确保设备最大产能。"
+  },
+  "about": {
+    "badge": "传统与领导力",
+    "title": "关于 Egypt America Center - Mohammed Hammouda",
+    "subtitle": "自1990年起致力于连接国际顶尖工程制造与全球纺织生产。",
+    "story_title": "我们的发展历程",
+    "story_text": "Egypt America Center 成立于1990年，致力于引入国际顶级纺织装备与配件品牌。",
+    "vision_title": "企业愿景",
+    "vision_text": "打造智能化、绿色高效的纺织机械分销网络，实现全球售后无缝对接。",
+    "mission_title": "企业使命",
+    "mission_text": "提供原装高精度的工业解决方案，延长设备寿命并提升生产效率。",
+    "gallery_title": "厂区与仓储风采"
+  },
+  "cta": {
+    "title": "准备升级您的纺织制造工厂吗？",
+    "desc": "立即咨询我们的国际工程师，获取定制机械配置或急件发货。",
+    "btn": "联系销售团队"
+  },
+  "brands_page": {
+    "badge": "官方授权代理品牌",
+    "title": "国际合作代理商",
+    "subtitle": "点击任意品牌查看专用机械目录、技术文档及销售团队。",
+    "view_brand": "进入品牌专区",
+    "explore_products": "浏览品牌产品",
+    "download_catalog": "下载PDF手册"
+  },
+  "contact": {
+    "badge": "联系我们",
+    "title": "联系销售与技术团队",
+    "subtitle": "需要设备询价或紧急备件？我们的多语种专家随时为您解答。",
+    "address_title": "总部地址",
+    "address_val": "埃及曼苏拉市，Al Tawhid 清真寺旁，El Shennawy 住宅区，2栋，A入口",
+    "phone_title": "电话与服务热线",
+    "phone_val": "+20 10 01339300",
+    "whatsapp_title": "WhatsApp 线上即时沟通",
+    "whatsapp_val": "+20 10 01339300",
+    "email_title": "官方邮箱",
+    "email_val": "info@egypt-american.com",
+    "hours_title": "工作时间",
+    "hours_val": "周一至周六: 08:00 - 18:00 (UTC+2)",
+    "form_name": "您的姓名",
+    "form_company": "公司名称",
+    "form_phone": "联系电话",
+    "form_email": "电子邮箱",
+    "form_product": "所需产品 / 咨询类型",
+    "form_message": "详细需求描述 / 规格参数",
+    "form_submit": "提交官方询价",
+    "success_msg": "感谢您的咨询！您的需求已成功记录并已转交 Egypt America Center 销售团队。"
+  },
+  "ai": {
+    "title": "Egypt America Center AI 智能助手",
+    "status": "在线 • 纺机工业专家",
+    "placeholder": "咨询设备参数、Megadyne同步带、品牌或运输...",
+    "welcome": "您好！我是 Egypt America Center - Mohammed Hammouda 智能助手。今天有什么可以为您效劳？您可以咨询大圆机、Megadyne同步带、高亨横机或零配件信息。",
+    "chip1": "纺织机械 ⚙️",
+    "chip2": "Megadyne 传动带 🧵",
+    "chip3": "联系我们 📞"
+  },
+  "theme": {
+    "label": "主题模式",
+    "dark": "🌙 暗黑",
+    "light": "☀️ 明亮"
+  },
+  "footer": {
+    "tagline": "Egypt America Center - Mohammed Hammouda • 授权工业纺织机械与零部件分销商 (始于1990)。",
+    "quick_links": "快速导航",
+    "brand_agencies": "代理品牌",
+    "contact_info": "联系方式",
+    "copyright": "© 2026 Egypt America Center - Mohammed Hammouda. 版权所有."
+  }
+}

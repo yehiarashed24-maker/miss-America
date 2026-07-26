@@ -1,0 +1,136 @@
+{
+  "nav": {
+    "brand": "Egypt America Center",
+    "sub": "Mohammed Hammouda",
+    "home": "Home",
+    "about": "About Us",
+    "products": "Products",
+    "brands": "Brands & Partners",
+    "contact": "Contact Us",
+    "request_quote": "Request Quote"
+  },
+  "hero": {
+    "badge": "Egypt America Center - Mohammed Hammouda • Since 1990",
+    "title_1": "EGYPT AMERICA CENTER",
+    "title_2": "MOHAMMED HAMMOUDA",
+    "description": "Imp./Exp. & Commercial Agencies - Leading distributor & agency for high-speed circular knitting machines, flat knitting, timing belts, and precision bearings.",
+    "cta_machinery": "Explore Machinery",
+    "cta_parts": "Browse Spare Parts"
+  },
+  "stats": {
+    "years": "Years Excellence (Since 1990)",
+    "countries": "Export Countries",
+    "brands": "Official Agencies",
+    "parts": "Spare Parts In Stock",
+    "oem": "Genuine OEM Parts"
+  },
+  "intro": {
+    "badge": "Company Background",
+    "title": "Empowering Industrial Manufacturing",
+    "subtitle": "Egypt America Center - Mohammed Hammouda represents world-class engineering from Taiwan, Italy, and international machinery leaders.",
+    "card1_title": "Certified OEM Quality",
+    "card1_desc": "100% authentic spare parts direct from official brand manufacturers.",
+    "card2_title": "24/7 Global Logistics",
+    "card2_desc": "Express worldwide dispatch for critical textile factory spares.",
+    "card3_title": "Turnkey Installation",
+    "card3_desc": "Expert engineering team for machine calibration and staff training."
+  },
+  "partners": {
+    "badge": "Official Distribution Agencies",
+    "title": "World-Class Brand Partners",
+    "subtitle": "We are proud to be the exclusive authorized distributor for leading international manufacturers.",
+    "marquee_title": "✧ OUR WORLD-CLASS INTERNATIONAL AGENCIES ✧"
+  },
+  "products": {
+    "badge": "Machinery & Components Catalog",
+    "title": "High-Performance Textile Solutions",
+    "subtitle": "Discover our comprehensive range of high-efficiency machinery and original spare parts.",
+    "cat_all": "All Products",
+    "cat_machinery": "Machinery",
+    "cat_spare_parts": "Spare Parts",
+    "search_placeholder": "Search by name, model or OEM code...",
+    "view_details": "View Specifications",
+    "inquire_now": "Inquire"
+  },
+  "why": {
+    "badge": "Engineering Advantage",
+    "title": "Why Factories Trust Egypt America Center",
+    "reason1_title": "Unmatched Precision",
+    "reason1_desc": "Micron-level accuracy cylinders and high-durability needles.",
+    "reason2_title": "Comprehensive Inventory",
+    "reason2_desc": "Over 15,000 active spare part references ready for immediate shipping.",
+    "reason3_title": "Direct OEM Warranty",
+    "reason3_desc": "Full manufacturer backing and genuine factory certified replacement parts.",
+    "reason4_title": "Dedicated Technical Support",
+    "reason4_desc": "On-site and remote engineering support tailored to your plant operating needs."
+  },
+  "about": {
+    "badge": "Our Heritage & Leadership",
+    "title": "About Egypt America Center - Mohammed Hammouda",
+    "subtitle": "Bridging international engineering excellence with global textile production since 1990.",
+    "story_title": "Our Journey & Heritage",
+    "story_text": "Egypt America Center - Mohammed Hammouda was established in 1990 to bring international industrial standards and premier machinery brands to global markets.",
+    "vision_title": "Our Vision",
+    "vision_text": "To pioneer smart, eco-efficient textile machinery distribution with zero-downtime logistics support worldwide.",
+    "mission_title": "Our Mission",
+    "mission_text": "Delivering genuine, high-precision industrial solutions that maximize machinery longevity and output efficiency.",
+    "gallery_title": "Facilities & Warehouse Gallery"
+  },
+  "cta": {
+    "title": "Ready to Upgrade Your Textile Manufacturing Facility?",
+    "desc": "Consult with our international engineers today for custom machine configurations or express spare parts dispatch.",
+    "btn": "Contact Sales Team"
+  },
+  "brands_page": {
+    "badge": "Official Authorized Represented Brands",
+    "title": "Our International Agencies",
+    "subtitle": "Click any partner brand to explore specialized machinery catalogs, technical resources, and dedicated sales teams.",
+    "view_brand": "View Brand Portal",
+    "explore_products": "Explore Brand Products",
+    "download_catalog": "Download Catalog PDF"
+  },
+  "contact": {
+    "badge": "Get In Touch",
+    "title": "Contact Sales & Support",
+    "subtitle": "Have a machinery inquiry or urgent spare parts requirement? Speak with our multi-lingual specialists.",
+    "address_title": "Headquarters Address",
+    "address_val": "Masaken El Shennawy, Next to Al Tawhid Mosque, Building 2, Entrance A, Mansoura, Egypt",
+    "phone_title": "Phone & Hotline",
+    "phone_val": "+20 10 01339300",
+    "whatsapp_title": "Instant WhatsApp Support",
+    "whatsapp_val": "+20 10 01339300",
+    "email_title": "Official Email",
+    "email_val": "info@egypt-american.com",
+    "hours_title": "Business Hours",
+    "hours_val": "Mon - Sat: 08:00 - 18:00 (UTC+2)",
+    "form_name": "Full Name",
+    "form_company": "Company Name",
+    "form_phone": "Phone Number",
+    "form_email": "Corporate Email Address",
+    "form_product": "Product Needed / Inquiry Type",
+    "form_message": "Detailed Message / Specifications",
+    "form_submit": "Send Official Inquiry",
+    "success_msg": "Thank you! Your inquiry has been logged and sent to Egypt America Center sales team."
+  },
+  "ai": {
+    "title": "Egypt America Center AI Assistant",
+    "status": "Online • Industrial Specialist",
+    "placeholder": "Ask about machinery specs, timing belts, brands, or shipping...",
+    "welcome": "Welcome! I am the Egypt America Center - Mohammed Hammouda Intelligent AI Assistant. How can I assist you with textile machinery, Megadyne belts, Kauo Heng flat knitting, or spare parts today?",
+    "chip1": "Textile Machinery ⚙️",
+    "chip2": "Megadyne Belts 🧵",
+    "chip3": "Contact Us 📞"
+  },
+  "theme": {
+    "label": "Theme Mode",
+    "dark": "🌙 Dark",
+    "light": "☀️ Light"
+  },
+  "footer": {
+    "tagline": "Egypt America Center - Mohammed Hammouda • Imp./Exp. & Commercial Agencies (Since 1990).",
+    "quick_links": "Quick Navigation",
+    "brand_agencies": "Brand Agencies",
+    "contact_info": "Global Support",
+    "copyright": "© 2026 Egypt America Center - Mohammed Hammouda. All Rights Reserved."
+  }
+}

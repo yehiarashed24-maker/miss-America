@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 120" width="300" height="120">
+  <defs>
+    <linearGradient id="relGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6b00" />
+      <stop offset="100%" stop-color="#ff9e00" />
+    </linearGradient>
+  </defs>
+  <rect width="300" height="120" rx="16" fill="#0f172a" />
+  <circle cx="60" cy="60" r="34" fill="none" stroke="url(#relGrad)" stroke-width="4" stroke-dasharray="6,4" />
+  <path d="M48 60 L60 48 L72 60 L60 72 Z" fill="url(#relGrad)" />
+  <text x="110" y="58" font-family="'Outfit', 'Segoe UI', sans-serif" font-weight="900" font-size="26" fill="#ffffff" letter-spacing="2">REL-TEX</text>
+  <text x="110" y="80" font-family="'Segoe UI', sans-serif" font-weight="700" font-size="10" fill="#ff6b00" letter-spacing="1">CIRCULAR KNITTING MACHINES</text>
+</svg>

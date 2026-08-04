@@ -395,7 +395,7 @@ class EgyptAmericanApp {
       '<span style="color:#111111; font-weight:900;">01 /</span> REL-TEX CIRCULAR KNITTING MACHINE',
       '<span style="color:#111111; font-weight:900;">02 /</span> KAUO HENG COMPUTERIZED FLAT KNITTING',
       '<span style="color:#111111; font-weight:900;">03 /</span> INDUSTRIAL DYEING & FINISHING MACHINE',
-      '<span style="color:#111111; font-weight:900;">04 /</span> MEGADYNE BELTS & POWER TRANSMISSION',
+      '<span style="color:#111111; font-weight:900;">04 /</span> INDUSTRIAL DYEING MACHINE',
       '<span style="color:#111111; font-weight:900;">05 /</span> GENUINE OEM SPARE PARTS & FEEDERS'
     ];
 

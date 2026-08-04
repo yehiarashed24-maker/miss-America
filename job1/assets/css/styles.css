@@ -6386,6 +6386,14 @@ textarea.form-control {
   pointer-events: auto;
 }
 
+.machine-slide[data-slide="0"] .hero-machine-img {
+  transform: scale(1.3);
+}
+
+.machine-slide[data-slide="0"]:hover .hero-machine-img {
+  transform: scale(1.35) rotate(1.5deg);
+}
+
 .machine-slide.exit-slide {
   opacity: 0;
   visibility: hidden;

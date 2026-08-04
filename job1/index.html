@@ -54,21 +54,25 @@
   </script>
 
   <!-- Premium editorial header bar -->
-  <header id="main-navbar" class="navbar">
+  <!-- Top bar -->
+  <div class="top-bar">
+    <div class="container top-bar-container">
+      <div class="top-links">
+        <a href="#">MEGA Portal</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+  </div>
+
+  <header id="main-navbar" class="navbar megadyne-navbar">
     <div class="container nav-container">
       <a href="#home" class="nav-brand">
-        <div class="nav-logo-wrapper">
-          <img src="assets/images/logo.png" alt="Egypt America Center Logo" class="nav-brand-logo" />
-        </div>
-        <div class="brand-text">
-          <span class="brand-main" data-i18n="nav.brand">Egypt America Center</span>
-          <span class="brand-sub" data-i18n="nav.sub">Mohammed Hammouda</span>
-          <span class="brand-badge">Imp./Exp. & Commercial Agencies</span>
-        </div>
+        <img src="assets/images/logo.png" alt="Megadyne Logo" class="nav-brand-logo" />
       </a>
 
       <!-- Navigation Centered -->
-      <nav class="nav-center-menu">
+      <nav class="nav-center-menu megadyne-menu">
         <div id="nav-active-glider" class="nav-active-glider"></div>
         <a href="#home" class="nav-center-link nav-link active" data-i18n="nav.home">Home</a>
         <a href="#about" class="nav-center-link nav-link" data-i18n="nav.about">About Us</a>
@@ -84,9 +88,7 @@
           <button class="lang-btn" id="lang-menu-trigger">
             <span id="current-lang-flag">🇪🇬</span>
             <span id="current-lang-label">العربية</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
+            <span class="arrow">▼</span>
           </button>
           <div class="lang-menu">
             <button class="lang-select-btn" data-lang="en"><span>🇺🇸</span> English</button>
@@ -95,8 +97,7 @@
           </div>
         </div>
 
-        <button class="nav-quote-pill trigger-quote-modal desktop-only" id="nav-quote-btn"
-          data-i18n="nav.request_quote">Request Quote <span>↗</span></button>
+        <button class="btn-red contact-us-btn" id="nav-quote-btn">Contact Us</button>
       </div>
     </div>
   </header>
@@ -243,6 +244,18 @@
                   class="hero-machine-img" />
               </div>
 
+              <!-- Slide 6: Added Machine 1 -->
+              <div class="machine-slide" data-slide="5">
+                <img src="assets/slide6.png" alt="Added Machine 1"
+                  class="hero-machine-img" />
+              </div>
+
+              <!-- Slide 7: Added Machine 2 -->
+              <div class="machine-slide" data-slide="6">
+                <img src="assets/slide7.png" alt="Added Machine 2"
+                  class="hero-machine-img" />
+              </div>
+
             </div>
 
             <!-- Slide Badge Label & Dots Controls -->
@@ -254,6 +267,8 @@
                 <button class="slide-dot" data-index="2" aria-label="Slide 3"></button>
                 <button class="slide-dot" data-index="3" aria-label="Slide 4"></button>
                 <button class="slide-dot" data-index="4" aria-label="Slide 5"></button>
+                <button class="slide-dot" data-index="5" aria-label="Slide 6"></button>
+                <button class="slide-dot" data-index="6" aria-label="Slide 7"></button>
               </div>
             </div>
 

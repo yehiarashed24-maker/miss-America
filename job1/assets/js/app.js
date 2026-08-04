@@ -388,6 +388,8 @@ class EgyptAmericanApp {
       "transparent",
       "transparent",
       "transparent",
+      "transparent",
+      "transparent",
       "transparent"
     ];
 
@@ -396,7 +398,9 @@ class EgyptAmericanApp {
       '<span style="color:#111111; font-weight:900;">02 /</span> KAUO HENG COMPUTERIZED FLAT KNITTING',
       '<span style="color:#111111; font-weight:900;">03 /</span> INDUSTRIAL DYEING & FINISHING MACHINE',
       '<span style="color:#111111; font-weight:900;">04 /</span> INDUSTRIAL DYEING MACHINE',
-      '<span style="color:#111111; font-weight:900;">05 /</span> GENUINE OEM SPARE PARTS & FEEDERS'
+      '<span style="color:#111111; font-weight:900;">05 /</span> GENUINE OEM SPARE PARTS & FEEDERS',
+      '<span style="color:#111111; font-weight:900;">06 /</span> ADVANCED MANUFACTURING MACHINE',
+      '<span style="color:#111111; font-weight:900;">07 /</span> HIGH-TECH INDUSTRIAL EQUIPMENT'
     ];
 
     const gotoSlide = (index) => {

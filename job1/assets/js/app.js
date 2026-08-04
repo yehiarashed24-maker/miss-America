@@ -28,6 +28,7 @@ class EgyptAmericanApp {
     this.renderBrands();
     this.renderProducts();
     this.initAIChat();
+    this.initHeroMachineSlider();
     this.bindEvents();
     this.initScrollEffects();
     this.initObservers();
@@ -125,7 +126,7 @@ class EgyptAmericanApp {
             collection: "products",
             filter: {}
           })
-        }).catch(() => {});
+        }).catch(() => { });
 
         await fetch(insertEndpoint, {
           method: "POST",
@@ -173,9 +174,9 @@ class EgyptAmericanApp {
   }
 
   setTheme(theme) {
-    this.currentTheme = theme;
-    localStorage.setItem("ea_theme", theme);
-    document.documentElement.setAttribute("data-theme", theme);
+    this.currentTheme = "light";
+    localStorage.setItem("ea_theme", "light");
+    document.documentElement.setAttribute("data-theme", "light");
     this.applyTranslations();
   }
 
@@ -321,7 +322,7 @@ class EgyptAmericanApp {
       return;
     }
 
-    const validRoutes = ["home", "about", "products", "brands", "contact", "admin"];
+    const validRoutes = ["home", "about", "products", "brands", "events", "contact", "admin"];
     if (!validRoutes.includes(hash)) hash = "home";
     this.showView(hash);
   }
@@ -372,41 +373,103 @@ class EgyptAmericanApp {
     // Removed window.addEventListener("load", hideLoader) to force a 1-second display.
   }
 
+  initHeroMachineSlider() {
+    const slides = document.querySelectorAll(".machine-slide");
+    const dots = document.querySelectorAll(".slide-dot");
+    const badge = document.getElementById("hero-slide-badge");
+    const glowRays = document.getElementById("hero-glow-rays");
+    if (!slides.length) return;
+
+    let currentIndex = 0;
+    let timer = null;
+
+    const colors = [
+      "transparent",
+      "transparent",
+      "transparent",
+      "transparent",
+      "transparent"
+    ];
+
+    const labels = [
+      '<span style="color:#111111; font-weight:900;">01 /</span> REL-TEX CIRCULAR KNITTING MACHINE',
+      '<span style="color:#111111; font-weight:900;">02 /</span> KAUO HENG COMPUTERIZED FLAT KNITTING',
+      '<span style="color:#111111; font-weight:900;">03 /</span> INDUSTRIAL DYEING & FINISHING MACHINE',
+      '<span style="color:#111111; font-weight:900;">04 /</span> MEGADYNE BELTS & POWER TRANSMISSION',
+      '<span style="color:#111111; font-weight:900;">05 /</span> GENUINE OEM SPARE PARTS & FEEDERS'
+    ];
+
+    const gotoSlide = (index) => {
+      slides.forEach((slide, i) => {
+        slide.classList.remove("active-slide", "exit-slide");
+        if (i === index) {
+          slide.classList.add("active-slide");
+        } else if (i === currentIndex && i !== index) {
+          slide.classList.add("exit-slide");
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === index);
+      });
+
+      if (badge) badge.innerHTML = labels[index] || labels[0];
+      if (glowRays) glowRays.style.background = colors[index % colors.length];
+
+      // Staggered interactive glow on corresponding floating brand item
+      const brandItems = document.querySelectorAll(".hero-floating-brands .brand-item");
+      brandItems.forEach((bItem, i) => {
+        bItem.classList.toggle("active-brand", i % slides.length === index);
+      });
+
+      currentIndex = index;
+    };
+
+    const nextSlide = () => {
+      const next = (currentIndex + 1) % slides.length;
+      gotoSlide(next);
+    };
+
+    const startTimer = () => {
+      if (timer) clearInterval(timer);
+      timer = setInterval(nextSlide, 5000);
+    };
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener("click", () => {
+        gotoSlide(idx);
+        startTimer();
+      });
+    });
+
+    startTimer();
+  }
+
   renderBrands() {
-    const homeMarquee = document.getElementById("home-partners-marquee");
+    const homeMarquee = document.querySelector(".fabric-brand-scroll") || document.getElementById("home-partners-marquee");
     const brandsGrid = document.getElementById("brands-page-grid");
     const data = EGYPT_AMERICAN_DATA.brands;
 
-    // 1. Render Giant Non-Stop Moving Marquee on Home Page (Non-clickable, endless loop)
+    // 1. Render compact fast logo-pill strip (small & quick)
     if (homeMarquee) {
-      const marqueeItemsHtml = [...data, ...data, ...data].map(b => {
-        const country = this.getText(`brands_dictionary.countries.${b.country}`) !== `brands_dictionary.countries.${b.country}` ? this.getText(`brands_dictionary.countries.${b.country}`) : b.country;
-        let subName = b.subName || "";
-        const brandInfo = this.getText(`brands_info.${b.id}`);
-        if (brandInfo && brandInfo !== `brands_info.${b.id}`) {
-          subName = brandInfo.subName || subName;
-        }
-        return `
-        <div class="marquee-brand-item marquee-giant-item">
-          <div class="marquee-logo-box giant-logo-box">
-            <img src="${b.logo}" alt="${b.name}" class="marquee-brand-logo" />
-          </div>
-          <div class="marquee-brand-info">
-            <span class="marquee-brand-title giant-title">${b.name}</span>
-            <span class="marquee-brand-sub giant-sub">${subName || country} ${b.flag}</span>
-          </div>
+      const repeated = [...data, ...data, ...data, ...data, ...data, ...data];
+      const marqueeItemsHtml = repeated.map(b => `
+        <div class="brand-logo-pill" title="${b.name}">
+          <img src="${b.logo}" alt="${b.name}" class="brand-pill-logo" />
+          <span class="brand-pill-name">${b.name}</span>
+          <span class="brand-pill-flag">${b.flag || ""}</span>
         </div>
-      `}).join("");
+      `).join("");
       homeMarquee.innerHTML = marqueeItemsHtml;
     }
 
-    // 2. Render Rich Interactive 3D Cards on Brands & Partners Page (#brands)
+    // 2. Render Rich Interactive Cards on Brands & Partners Page (#brands) with Infinite Horizontal Stream
     if (brandsGrid) {
-      const brandCardsHtml = data.map((b, index) => {
+      const duplicatedData = [...data, ...data];
+      const brandCardsHtml = duplicatedData.map((b) => {
         const country = this.getText(`brands_dictionary.countries.${b.country}`) !== `brands_dictionary.countries.${b.country}` ? this.getText(`brands_dictionary.countries.${b.country}`) : b.country;
         const badge = this.getText(`brands_dictionary.badges.${b.badge}`) !== `brands_dictionary.badges.${b.badge}` ? this.getText(`brands_dictionary.badges.${b.badge}`) : b.badge;
-        const refText = this.getText(`brands_dictionary.references`) !== `brands_dictionary.references` ? this.getText(`brands_dictionary.references`) : "References";
-        
+
         let subName = b.subName || "";
         let tagline = b.tagline || b.description || "";
         const brandInfo = this.getText(`brands_info.${b.id}`);
@@ -416,7 +479,7 @@ class EgyptAmericanApp {
         }
 
         return `
-        <div class="brand-portal-card glass-card glow-pulse-card reveal-on-scroll" style="animation-delay: ${index * 0.15}s">
+        <div class="brand-portal-card glass-card glow-pulse-card">
           <div class="brand-card-top-bar">
             <span class="brand-badge-tag">${badge}</span>
             <span class="brand-country-badge">${b.flag} ${country}</span>
@@ -474,8 +537,8 @@ class EgyptAmericanApp {
         const brand = (p.brandName || p.brand || "").toLowerCase();
 
         return nameEn.includes(q) || nameAr.includes(q) || nameZh.includes(q) ||
-               descEn.includes(q) || descAr.includes(q) ||
-               code.includes(q) || brand.includes(q);
+          descEn.includes(q) || descAr.includes(q) ||
+          code.includes(q) || brand.includes(q);
       });
     }
 
@@ -714,8 +777,8 @@ class EgyptAmericanApp {
       const waBtnText = this.currentLang === "ar"
         ? "📱 إرسال التفاصيل فوراً عبر واتساب المبيعات"
         : this.currentLang === "zh"
-        ? "📱 通过 WhatsApp 发送"
-        : "📱 Send Details Directly via WhatsApp";
+          ? "📱 通过 WhatsApp 发送"
+          : "📱 Send Details Directly via WhatsApp";
 
       statusEl.innerHTML = `
         <div style="margin-bottom: 10px;">${this.getText("contact.success_msg")}</div>
@@ -960,11 +1023,11 @@ STRICT INSTRUCTIONS FOR ARABIC & MULTILINGUAL RESPONSES:
           reply = rawReply;
         }
       } else {
-        reply = isArabic 
+        reply = isArabic
           ? "أهلاً بك! بصفتي المساعد الذكي لمركز مصر أمريكا - محمد حمودة، يمكنني مساعدتك في كافة ما يتعلق بآلات النسيج، قطع الغيار (سيور Megadyne، محامل NBSMG، أسطوانات Center Circle)، والوكالات التجارية.\n\n📍 **العنوان:** مساكن الشناوي، بجانب مسجد التوحيد، عمارة 2، مدخل أ، المنصورة، مصر.\n🗺️ **خرائط جوجل:** https://maps.app.goo.gl/nto3JL4cVCN65D776\n📞 **هاتف / واتساب:** +201001339300\n✉️ **بريد إلكتروني:** info@egypt-american.com"
           : isChinese
-          ? "您好！我是 Egypt America Center 智能 AI 助手。我可以解答有关纺织机械、Megadyne 备件及代理的信息。\n地址：埃及曼苏拉市 El Shennawy 住宅区 2栋 A入口\n电话：+20 10 01339300"
-          : "Hello! I am the Egypt America Center Specialist AI. I can assist you with details regarding our textile machinery, spare parts (Megadyne belts, NBSMG bearings), and authorized commercial agencies.\nAddress: Masaken El Shennawy, Next to Al Tawhid Mosque, Building 2, Entrance A, Mansoura, Egypt\nPhone/WhatsApp: +20 10 01339300";
+            ? "您好！我是 Egypt America Center 智能 AI 助手。我可以解答有关纺织机械、Megadyne 备件及代理的信息。\n地址：埃及曼苏拉市 El Shennawy 住宅区 2栋 A入口\n电话：+20 10 01339300"
+            : "Hello! I am the Egypt America Center Specialist AI. I can assist you with details regarding our textile machinery, spare parts (Megadyne belts, NBSMG bearings), and authorized commercial agencies.\nAddress: Masaken El Shennawy, Next to Al Tawhid Mosque, Building 2, Entrance A, Mansoura, Egypt\nPhone/WhatsApp: +20 10 01339300";
       }
 
       this.aiMessages.push({ role: "assistant", content: reply });
@@ -1084,7 +1147,7 @@ STRICT INSTRUCTIONS FOR ARABIC & MULTILINGUAL RESPONSES:
         const category = document.getElementById("admin-prod-category").value;
         const brand = document.getElementById("admin-prod-brand").value;
         const code = document.getElementById("admin-prod-code").value.trim();
-        
+
         const fileInput = document.getElementById("admin-prod-file");
         const urlInput = document.getElementById("admin-prod-image");
         let image = urlInput ? urlInput.value.trim() : "";
@@ -1172,69 +1235,7 @@ STRICT INSTRUCTIONS FOR ARABIC & MULTILINGUAL RESPONSES:
   }
 
   getInitialSampleInquiries() {
-    const now = Date.now();
-    return [
-      {
-        id: "inq_sample_1",
-        created_at: new Date(now - 10 * 60 * 1000).toISOString(),
-        name: "مهندس أحمد التمامي",
-        company: "شركة الدقهلية للغزل والنسيج",
-        phone: "+201002345678",
-        email: "ahmed.altamami@dagahlia-textiles.com",
-        product: "سيور توقيت Megadyne AT10-1250 بولي يوريثان",
-        message: "نرجو موافاتنا بعرض سعر كمي لعدد 50 سير توقيت Megadyne طراز AT10 مع التوصيل لمصنعنا بالمنصورة.",
-        form_type: "طلب عرض سعر رسمي",
-        lang: "ar"
-      },
-      {
-        id: "inq_sample_2",
-        created_at: new Date(now - 60 * 60 * 1000).toISOString(),
-        name: "مهندس محمود الشناوي",
-        company: "مصانع الشناوي للتريكو والملابس",
-        phone: "+201019876543",
-        email: "m.elshennawy@shennawy-textiles.com",
-        product: "آلة تريكو مسطحة محوسبة Kauo Heng ADF-530",
-        message: "نريد الاستفسار عن كفالة ومواصفات وتكلفة توريد 2 آلة تريكو مسطحة كاو هينغ ADF-530 لإنتاج الياقات النسيجية.",
-        form_type: "طلب عرض سعر رسمي",
-        lang: "ar"
-      },
-      {
-        id: "inq_sample_3",
-        created_at: new Date(now - 3 * 60 * 60 * 1000).toISOString(),
-        name: "الحاج طارق عبد العزيز",
-        company: "المؤسسة الحديثة للغزل والتطريز",
-        phone: "+201098765432",
-        email: "tarek@modern-embroidery.eg",
-        product: "أسطوانة تريكو دائرية Center Circle 28G",
-        message: "نحتاج أسطوانة (سلندر) تريكو دائرية سنتر سيركل تايواني قياس 28G عالية الدقة، يرجى التواصل هاتفياً.",
-        form_type: "طلب عرض سعر رسمي",
-        lang: "ar"
-      },
-      {
-        id: "inq_sample_4",
-        created_at: new Date(now - 5 * 60 * 60 * 1000).toISOString(),
-        name: "المهندس حسن الجمال",
-        company: "المجمعات الصناعية الكبرى",
-        phone: "+201005544332",
-        email: "hassan.elgammal@industrial-complex.com",
-        product: "محامل ورمان بلي دقيق NBSMG ABEC-5",
-        message: "نود الحصول على الكتالوج الفني لقطع غيار ومحامل NBSMG بالإضافة لمعلومات الشحن المباشر للمستودعات.",
-        form_type: "استفسار صفحة اتصل بنا",
-        lang: "ar"
-      },
-      {
-        id: "inq_sample_5",
-        created_at: new Date(now - 24 * 60 * 60 * 1000).toISOString(),
-        name: "السيد خالد منصور",
-        company: "النصر لآلات النسيج والوكالات",
-        phone: "+201012349876",
-        email: "khaled@alnasr-machinery.com",
-        product: "آلة تريكو دائرية عالية السرعة REL-TEX RT-900",
-        message: "يرجى إرسال عرض سعر رسمي شاملاً الجمارك والتوصيل لآلة التريكو الدائرية REL-TEX موديل RT-900.",
-        form_type: "طلب عرض سعر رسمي",
-        lang: "ar"
-      }
-    ];
+    return [];
   }
 
   renderAdminInquiries() {
@@ -1244,12 +1245,10 @@ STRICT INSTRUCTIONS FOR ARABIC & MULTILINGUAL RESPONSES:
 
     let stored = localStorage.getItem("ea_inquiries");
     let inquiries = [];
-    if (!stored) {
-      inquiries = this.getInitialSampleInquiries();
-      localStorage.setItem("ea_inquiries", JSON.stringify(inquiries));
-    } else {
+    if (stored) {
       try {
-        inquiries = JSON.parse(stored || "[]");
+        inquiries = JSON.parse(stored || "[]").filter(i => i && i.id && !i.id.startsWith("inq_sample_"));
+        localStorage.setItem("ea_inquiries", JSON.stringify(inquiries));
       } catch (e) {
         inquiries = [];
       }
@@ -1279,7 +1278,7 @@ STRICT INSTRUCTIONS FOR ARABIC & MULTILINGUAL RESPONSES:
       const rawFormType = (inq.form_type || "").toLowerCase();
       const isQuote = rawFormType.includes("quote") || rawFormType.includes("عرض سعر") || rawFormType.includes("modal");
       const badgeStyle = isQuote
-        ? "background: rgba(255, 107, 0, 0.18); color: #ff6b00; border: 1px solid rgba(255, 107, 0, 0.4);"
+        ? "background: rgba(0, 0, 0, 0.08); color: #111111; border: 1px solid rgba(0, 0, 0, 0.2);"
         : "background: rgba(0, 136, 204, 0.18); color: #0088cc; border: 1px solid rgba(0, 136, 204, 0.4);";
       const badgeLabel = isQuote ? "📋 طلب عرض سعر رسمي" : "💬 استفسار تواصل";
       const dateStr = inq.created_at ? new Date(inq.created_at).toLocaleString("ar-EG") : "الآن";
@@ -1412,7 +1411,7 @@ STRICT INSTRUCTIONS FOR ARABIC & MULTILINGUAL RESPONSES:
     document.getElementById("admin-edit-prod-name-ar").value = titleAr;
     if (document.getElementById("admin-edit-prod-name-en")) document.getElementById("admin-edit-prod-name-en").value = titleEn;
     if (document.getElementById("admin-edit-prod-name-zh")) document.getElementById("admin-edit-prod-name-zh").value = titleZh;
-    
+
     const catSelect = document.getElementById("admin-edit-prod-category");
     if (catSelect) {
       const isMach = (prod.category || "").toLowerCase().includes("machin");
@@ -1433,7 +1432,7 @@ STRICT INSTRUCTIONS FOR ARABIC & MULTILINGUAL RESPONSES:
 
     document.getElementById("admin-edit-prod-code").value = prod.code || "OEM-000";
     if (document.getElementById("admin-edit-prod-image")) document.getElementById("admin-edit-prod-image").value = prod.image || "";
-    
+
     document.getElementById("admin-edit-prod-desc-ar").value = descAr;
     if (document.getElementById("admin-edit-prod-desc-en")) document.getElementById("admin-edit-prod-desc-en").value = descEn;
 
@@ -1453,7 +1452,7 @@ STRICT INSTRUCTIONS FOR ARABIC & MULTILINGUAL RESPONSES:
         const updatedCategory = document.getElementById("admin-edit-prod-category").value;
         const updatedBrand = document.getElementById("admin-edit-prod-brand").value;
         const updatedCode = document.getElementById("admin-edit-prod-code").value.trim();
-        
+
         const fileInput = document.getElementById("admin-edit-prod-file");
         const urlInput = document.getElementById("admin-edit-prod-image");
         let updatedImage = urlInput ? urlInput.value.trim() : "";
@@ -1608,21 +1607,28 @@ STRICT INSTRUCTIONS FOR ARABIC & MULTILINGUAL RESPONSES:
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add("reveal-active");
-          if (entry.target.classList.contains("stat-number")) {
+          if (entry.target.classList.contains("counter-value") || entry.target.classList.contains("stat-number")) {
             const targetVal = parseInt(entry.target.getAttribute("data-target") || "0");
-            let curr = 0;
-            const step = Math.ceil(targetVal / 30);
-            const t = setInterval(() => {
-              curr += step;
-              if (curr >= targetVal) { entry.target.innerText = targetVal.toLocaleString() + "+"; clearInterval(t); }
-              else entry.target.innerText = curr.toLocaleString() + "+";
-            }, 40);
+            const suffix = entry.target.getAttribute("data-suffix") || "+";
+            if (targetVal > 0) {
+              let curr = 0;
+              const step = Math.max(1, Math.ceil(targetVal / 35));
+              const t = setInterval(() => {
+                curr += step;
+                if (curr >= targetVal) {
+                  entry.target.innerText = targetVal.toLocaleString() + suffix;
+                  clearInterval(t);
+                } else {
+                  entry.target.innerText = curr.toLocaleString() + suffix;
+                }
+              }, 35);
+            }
           }
         }
       });
     }, { threshold: 0.15 });
 
-    document.querySelectorAll(".reveal-on-scroll, .stat-number").forEach(el => observer.observe(el));
+    document.querySelectorAll(".reveal-on-scroll, .stat-number, .counter-value").forEach(el => observer.observe(el));
   }
 }
 

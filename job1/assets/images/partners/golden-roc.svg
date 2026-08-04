@@ -1,16 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 120" width="300" height="120">
-  <defs>
-    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#f59e0b" />
-      <stop offset="50%" stop-color="#fbbf24" />
-      <stop offset="100%" stop-color="#d97706" />
-    </linearGradient>
-  </defs>
-  <rect width="300" height="120" rx="16" fill="#0b1329" />
-  <g transform="translate(25, 25)">
-    <path d="M35 10 L50 35 L40 35 L40 60 L30 60 L30 35 L20 35 Z" fill="url(#goldGrad)" />
-    <path d="M10 25 Q35 5 60 25 Q35 45 10 25 Z" fill="none" stroke="url(#goldGrad)" stroke-width="3" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270 70" width="270" height="70">
+  <!-- Golden Roc Wing Emblem -->
+  <g transform="translate(10, 8)">
+    <path d="M6 38 C 14 10, 38 4, 52 14 C 40 18, 28 26, 22 42 Z" fill="#d97706" />
+    <path d="M18 42 C 26 22, 44 18, 54 26 C 44 30, 34 38, 28 48 Z" fill="#b45309" />
+    <circle cx="28" cy="22" r="3" fill="#1e293b" />
   </g>
-  <text x="105" y="55" font-family="'Outfit', sans-serif" font-weight="900" font-size="22" fill="url(#goldGrad)" letter-spacing="1.5">GOLDEN ROC</text>
-  <text x="105" y="78" font-family="'Segoe UI', sans-serif" font-weight="700" font-size="10" fill="#cbd5e1" letter-spacing="1">KNITTING NEEDLES &amp; SPARES</text>
+  <!-- Corporate Text -->
+  <text x="72" y="38" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-weight="900" font-size="25" fill="#1e293b" letter-spacing="1">GOLDEN ROC</text>
+  <text x="73" y="56" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-weight="800" font-size="9.5" fill="#d97706" letter-spacing="1.5">KNITTING NEEDLES &amp; SINKERS</text>
 </svg>

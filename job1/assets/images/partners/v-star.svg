@@ -1,14 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 120" width="300" height="120">
-  <defs>
-    <linearGradient id="vstarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#6366f1" />
-      <stop offset="100%" stop-color="#a855f7" />
-    </linearGradient>
-  </defs>
-  <rect width="300" height="120" rx="16" fill="#0f172a" />
-  <g transform="translate(25, 25)">
-    <polygon points="35,10 43,26 60,28 47,40 51,57 35,48 19,57 23,40 10,28 27,26" fill="url(#vstarGrad)" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 70" width="250" height="70">
+  <!-- Dynamic V-Star Emblem -->
+  <g transform="translate(10, 8)">
+    <path d="M6 10 L28 48 L50 10 L38 10 L28 30 L18 10 Z" fill="#e11d48" />
+    <path d="M28 4 L33 16 L46 16 L35 24 L39 36 L28 28 L17 36 L21 24 L10 16 L23 16 Z" fill="#9f1239" opacity="0.85" />
   </g>
-  <text x="100" y="55" font-family="'Outfit', sans-serif" font-weight="900" font-size="24" fill="#ffffff" letter-spacing="2">V-STAR</text>
-  <text x="100" y="78" font-family="'Segoe UI', sans-serif" font-weight="600" font-size="10" fill="#a855f7" letter-spacing="1">INDUSTRIAL MACHINERY</text>
+  <!-- Corporate Text -->
+  <text x="68" y="38" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-weight="900" font-size="27" fill="#0f172a" letter-spacing="1">V-STAR</text>
+  <text x="69" y="56" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-weight="800" font-size="9.5" fill="#e11d48" letter-spacing="1.5">TEXTILE MACHINERY INDUSTRY</text>
 </svg>

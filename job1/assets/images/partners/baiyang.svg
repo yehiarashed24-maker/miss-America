@@ -1,15 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 120" width="300" height="120">
-  <defs>
-    <linearGradient id="baiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#f43f5e" />
-      <stop offset="100%" stop-color="#fb7185" />
-    </linearGradient>
-  </defs>
-  <rect width="300" height="120" rx="16" fill="#0f172a" />
-  <g transform="translate(25, 25)">
-    <rect x="15" y="15" width="40" height="40" rx="8" fill="url(#baiGrad)" />
-    <path d="M25 35 L45 35 M35 25 L35 45" stroke="#ffffff" stroke-width="4" stroke-linecap="round" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 70" width="250" height="70">
+  <!-- Baiyang Double Ring Emblem -->
+  <g transform="translate(10, 8)">
+    <circle cx="28" cy="28" r="24" fill="none" stroke="#0284c7" stroke-width="4.5" />
+    <path d="M12 28 C 12 18, 44 18, 44 28 C 44 38, 12 38, 12 28 Z" fill="none" stroke="#0369a1" stroke-width="3.5" />
+    <rect x="24" y="10" width="8" height="36" fill="#0284c7" rx="2" />
   </g>
-  <text x="100" y="55" font-family="'Outfit', sans-serif" font-weight="900" font-size="22" fill="#ffffff" letter-spacing="2">BAIYANG</text>
-  <text x="100" y="78" font-family="'Segoe UI', sans-serif" font-weight="600" font-size="10" fill="#f43f5e" letter-spacing="1">MACHINERY INDUSTRY</text>
+  <!-- Corporate Text -->
+  <text x="68" y="38" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-weight="900" font-size="27" fill="#0f172a" letter-spacing="1.5">BAIYANG</text>
+  <text x="69" y="56" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-weight="800" font-size="9.5" fill="#0284c7" letter-spacing="1.5">DOUBLE JERSEY MACHINERY</text>
 </svg>

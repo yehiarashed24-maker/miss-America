@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 70" width="250" height="70">
+  <!-- Swiss Red Accent Box -->
+  <g transform="translate(10, 10)">
+    <rect x="0" y="0" width="46" height="46" rx="6" fill="#dc2626" />
+    <!-- Swiss Cross Motif -->
+    <rect x="18" y="10" width="10" height="26" fill="#ffffff" />
+    <rect x="10" y="18" width="26" height="10" fill="#ffffff" />
+  </g>
+  <!-- Corporate Text -->
+  <text x="68" y="38" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-weight="900" font-size="28" fill="#0f172a" letter-spacing="1">MÜLLER</text>
+  <text x="69" y="56" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-weight="800" font-size="9.5" fill="#dc2626" letter-spacing="2">JAKOB MÜLLER GROUP</text>
+</svg>

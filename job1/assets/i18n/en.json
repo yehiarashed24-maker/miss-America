@@ -79,7 +79,47 @@
   "cta": {
     "title": "Ready to Upgrade Your Textile Manufacturing Facility?",
     "desc": "Consult with our international engineers today for custom machine configurations or express spare parts dispatch.",
-    "btn": "Contact Sales Team"
+    "btn": "Contact Sales Team",
+    "whatsapp": "WhatsApp Direct"
+  },
+  "network": {
+    "badge": "Global Supply & Agency Network",
+    "title": "Global Agency Network <span style=\"color: #D32F2F;\">• Egypt Middle East Hub</span>",
+    "desc": "Our authorized international commercial agencies from Taiwan, Italy, China, and Germany connect directly to our headquarters in Mansoura, Egypt, delivering express logistics and genuine OEM spare parts.",
+    "pin_hq": "🇪🇬 Headquarters (Egypt)",
+    "pin_taiwan": "🇹🇼 Taiwan (Center Circle)",
+    "pin_italy": "🇮🇹 Italy (Megadyne Belts)",
+    "pin_china": "🇨🇳 China (NBSMG & SMG)",
+    "pin_germany": "🇩🇪 Germany (German Spares)",
+    "pin_japan": "🇯🇵 Japan (Industrial Electronics)",
+    "info_title": "Egypt America Center - Mansoura, Egypt (Headquarters)",
+    "info_desc": "Direct supply chain and technical support hub for textile machinery and genuine spare parts across Egypt and the Middle East.",
+    "nodes": {
+      "egypt": {
+        "title": "Egypt America Center - Mansoura, Egypt (Headquarters)",
+        "desc": "Direct supply chain and technical support hub for textile machinery and genuine spare parts across Egypt and the Middle East."
+      },
+      "china": {
+        "title": "China Agency Network (NBSMG & SMG)",
+        "desc": "NBSMG & SMG Agencies (China) - Official manufacturer for precision bearings and electronic yarn storage feeders for textile machinery."
+      },
+      "taiwan": {
+        "title": "Taiwan Agency Network (Center Circle & Kauo Heng)",
+        "desc": "Center Circle & Kauo Heng Agencies (Taiwan) - Authorized manufacturer of high-speed circular knitting machines and computerized flat knitting systems."
+      },
+      "italy": {
+        "title": "Italy Agency Network (Megadyne Belts)",
+        "desc": "Megadyne Agency (Italy) - Authorized distributor for premium polyurethane and rubber industrial timing belts."
+      },
+      "germany": {
+        "title": "German Technology Network (German Spares)",
+        "desc": "German Technology Partnerships - Micron-precision textile needles, sinkers, and heavy-duty alloy components."
+      },
+      "japan": {
+        "title": "Japan Technology Network (Industrial Electronics)",
+        "desc": "Japan Technology Systems - Certified industrial inverters and digital control panels for textile machinery."
+      }
+    }
   },
   "brands_page": {
     "badge": "Official Authorized Represented Brands",

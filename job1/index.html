@@ -20,7 +20,7 @@
   <link rel="icon" type="image/png" href="assets/images/logo.png">
 
   <!-- Main Stylesheet (Cache Busted) -->
-  <link rel="stylesheet" href="assets/css/styles.css?v=4.8" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=99.0" />
 
   <!-- Animation Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -30,28 +30,42 @@
 
 <body>
 
-  <!-- Ultra-Modern Industrial Preloader Screen -->
-  <div id="preloader">
+  <!-- Ultra-Luxury Industrial Entrance Animation Screen -->
+  <div id="preloader" class="entrance-preloader-screen">
+    <div class="intro-bg-ambient"></div>
+    <div class="intro-grid-overlay"></div>
+    <div class="intro-light-beam"></div>
+
     <div class="loader-content-box">
-      <div class="loader-gear-mesh" style="background: none; border: none; width: auto; height: auto;">
+      <!-- 3D Orbiting Metallic Ring & Logo -->
+      <div class="loader-logo-container">
+        <div class="orbit-ring-outer"></div>
+        <div class="orbit-ring-inner"></div>
+        <div class="logo-glow-aura"></div>
         <img src="assets/images/logo.png" alt="Egypt America Center Logo" class="preloader-logo-img" />
       </div>
+
+      <!-- Brand Title & Subtitle -->
       <div class="loader-brand-title">EGYPT AMERICA <span class="gold-text">CENTER</span></div>
-      <div class="loader-subtitle">Mohammed Hammouda / مركز مصر أمريكا - محمد حمودة</div>
-      <div class="loader-progress-track">
-        <div class="loader-progress-fill"></div>
+      <div class="loader-subtitle">
+        <span>مركز مصر أمريكا - محمد حمودة</span>
+        <span class="sub-agency-tag">الوكيل المعتمد لآلات النسيج وقطع الغيار العالمية</span>
       </div>
+
+      <!-- Live Counter & Progress Bar -->
+      <div class="loader-counter-wrap">
+        <div class="loader-progress-track">
+          <div class="loader-progress-fill" id="preloader-progress-fill"></div>
+        </div>
+        <div class="loader-counter-badge">
+          <span id="preloader-percent">0</span>%
+        </div>
+      </div>
+
+      <!-- Live Tech Status Message -->
+      <div class="loader-status-msg" id="preloader-status-msg">جاري تحميل محرك الأنظمة الصناعية...</div>
     </div>
   </div>
-  <script>
-    setTimeout(() => {
-      const p = document.getElementById("preloader");
-      if (p) {
-        p.classList.add("fade-out");
-        setTimeout(() => p.style.display = "none", 500);
-      }
-    }, 1500);
-  </script>
 
   <!-- Premium editorial header bar -->
   <header id="main-navbar" class="navbar">
@@ -177,8 +191,8 @@
           <div class="hero-fabric-bg-stage">
             <div class="hero-fabric-bg-parallax">
               <picture class="hero-fabric-bg-picture">
-                <img src="assets/images/home/fabric-swatches-bg.jpg" alt="High Resolution Studio Fabric Background" class="hero-fabric-bg-img" width="2400"
-                  height="1600" decoding="async" fetchpriority="high" />
+                <img src="assets/images/home/fabric-swatches-bg.jpg" alt="High Resolution Studio Fabric Background"
+                  class="hero-fabric-bg-img" width="2400" height="1600" decoding="async" fetchpriority="high" />
               </picture>
               <div class="hero-fabric-bg-shine"></div>
               <div class="hero-fabric-bg-depth"></div>
@@ -186,74 +200,156 @@
           </div>
           <div class="hero-fabric-bg-vignette"></div>
         </div>
+
+        <!-- Floating Particles Canvas -->
         <div class="hero-content-wrapper">
           <div class="hero-left-column">
-            <span class="hero-eyebrow" data-i18n="new_hero.eyebrow">POWERING TEXTILE ENGINEERING</span>
-            <h1 class="hero-main-title">
+            <span class="hero-eyebrow" id="hero-eyebrow" data-i18n="new_hero.eyebrow">POWERING TEXTILE ENGINEERING</span>
+            <h1 class="hero-main-title" id="hero-main-title">
               <span class="title-line" data-i18n="new_hero.title_line1">ENGINEERING</span>
               <span class="title-line" data-i18n="new_hero.title_line2">EXCELLENCE</span>
               <span class="title-line highlight-orange" data-i18n="new_hero.title_line3">SINCE 1990</span>
             </h1>
-            <p class="hero-description" data-i18n="new_hero.desc">
+            <p class="hero-description" id="hero-description" data-i18n="new_hero.desc">
               Egypt's leading supplier of textile machinery, complete factory solutions, and original spare parts. We
               deliver comprehensive support for uninterrupted production.
             </p>
-            <div class="hero-action-buttons">
+            <div class="hero-action-buttons" id="hero-action-buttons">
               <a href="#products" class="btn-primary-orange"><span data-i18n="new_hero.btn_explore">EXPLORE
                   MACHINERY</span> <span class="arrow">↗</span></a>
-              <a href="#brands" class="btn-secondary-outline"><span data-i18n="new_hero.btn_brands">DISCOVER
-                  BRANDS</span> <span class="arrow">→</span></a>
+              <a href="https://wa.me/201001339300" target="_blank" rel="noopener" class="btn-secondary-outline"><span>ASK AN EXPERT</span> <span class="arrow">💬</span></a>
+              <a href="#contact" class="btn-gold"><span>ORDER SPARES</span> <span class="arrow">📦</span></a>
             </div>
           </div>
 
           <div class="hero-right-column">
-            <!-- Glowing rays background -->
-            <div class="hero-glow-rays" id="hero-glow-rays"></div>
-
-            <!-- 3D Interactive Rotating Machine Showcase Slider (5 Real Machine & Spare Part Images) -->
+            <!-- Megadyne Style 3-Slanted Parallelogram Image Slices Showcase -->
             <div class="hero-machine-showcase" id="hero-machine-showcase">
 
-              <!-- Slide 1: Real Machine 1 -->
+              <button class="hero-slider-arrow prev-arrow" id="hero-prev-btn" aria-label="Previous Slide">‹</button>
+              <button class="hero-slider-arrow next-arrow" id="hero-next-btn" aria-label="Next Slide">›</button>
+
+              <!-- Slide 0: REL-TEX Circular Knitting -->
               <div class="machine-slide active-slide" data-slide="0">
-                <img src="assets/images/machines/real-machine-1.png" alt="REL-TEX Circular Knitting Machine"
-                  class="hero-machine-img" />
+                <div class="megadyne-slanted-cards">
+                  <div class="slanted-card-item">
+                    <img src="assets/images/machines/knitting-hero-1.png" alt="REL-TEX Circular Knitting Machine" />
+                    <span class="card-caption">REL-TEX (Taiwan)</span>
+                  </div>
+                  <div class="slanted-card-item">
+                    <img src="assets/images/machines/real-machine-1.png" alt="Cylinder & Needle Spares" />
+                    <span class="card-caption">REL-TEX (Taiwan)</span>
+                  </div>
+                  <div class="slanted-card-item">
+                    <img src="assets/images/home/fabric-swatches-bg.jpg" alt="High-Density Knitted Fabric" />
+                    <span class="card-caption">REL-TEX (Taiwan)</span>
+                  </div>
+                </div>
               </div>
 
-              <!-- Slide 2: Real Machine 2 -->
+              <!-- Slide 1: Kauo Heng Flat Knitting -->
               <div class="machine-slide" data-slide="1">
-                <img src="assets/images/machines/real-machine-2.png" alt="Kauo Heng Computerized Flat Knitting Machine"
-                  class="hero-machine-img" />
+                <div class="megadyne-slanted-cards">
+                  <div class="slanted-card-item">
+                    <img src="assets/images/machines/flat-knitting-hero-clean.png" alt="Kauo Heng 3D Flat Knitting" />
+                    <span class="card-caption">KAUO HENG (Taiwan)</span>
+                  </div>
+                  <div class="slanted-card-item">
+                    <img src="assets/images/machines/real-machine-2.png" alt="Electronic Carriage" />
+                    <span class="card-caption">KAUO HENG (Taiwan)</span>
+                  </div>
+                  <div class="slanted-card-item">
+                    <img src="assets/images/home/flowing-silk-transparent.png" alt="3D Shoe Upper Mesh" />
+                    <span class="card-caption">KAUO HENG (Taiwan)</span>
+                  </div>
+                </div>
               </div>
 
-              <!-- Slide 3: Real Machine 3 -->
+              <!-- Slide 2: Megadyne Italy Belts -->
               <div class="machine-slide" data-slide="2">
-                <img src="assets/images/machines/real-machine-3.png" alt="Industrial Dyeing & Finishing Machine"
-                  class="hero-machine-img" />
+                <div class="megadyne-slanted-cards">
+                  <div class="slanted-card-item">
+                    <img src="assets/images/machines/real-machine-3.png" alt="Megadyne Timing Belts Assembly" />
+                    <span class="card-caption">MEGADYNE (Italy)</span>
+                  </div>
+                  <div class="slanted-card-item">
+                    <img src="assets/images/machines/production-line.png" alt="Factory Conveyor Line" />
+                    <span class="card-caption">MEGADYNE (Italy)</span>
+                  </div>
+                  <div class="slanted-card-item">
+                    <img src="assets/images/machines/real-machine-4.png" alt="Polyurethane Transmission Belts" />
+                    <span class="card-caption">MEGADYNE (Italy)</span>
+                  </div>
+                </div>
               </div>
 
-              <!-- Slide 4: Real Machine 4 -->
+              <!-- Slide 3: Golden Roc Needles -->
               <div class="machine-slide" data-slide="3">
-                <img src="assets/images/machines/real-machine-4.png" alt="Industrial Dyeing Machine"
-                  class="hero-machine-img" />
+                <div class="megadyne-slanted-cards">
+                  <div class="slanted-card-item">
+                    <img src="assets/images/machines/real-machine-5.png" alt="SMG SW8 Yarn Feeder" />
+                    <span class="card-caption">GOLDEN ROC (China)</span>
+                  </div>
+                  <div class="slanted-card-item">
+                    <img src="assets/images/machines/real-machine-6.png" alt="Storage Yarn Feeder" />
+                    <span class="card-caption">GOLDEN ROC (China)</span>
+                  </div>
+                  <div class="slanted-card-item">
+                    <img src="assets/images/machines/jacquard-hero-clean.png" alt="Cylinder Needle Bed" />
+                    <span class="card-caption">GOLDEN ROC (China)</span>
+                  </div>
+                </div>
               </div>
 
-              <!-- Slide 5: Real Machine 5 -->
+              <!-- Slide 4: Dyeing & Finishing -->
               <div class="machine-slide" data-slide="4">
-                <img src="assets/images/machines/real-machine-5.png" alt="Genuine OEM Spare Parts & Feeders"
-                  class="hero-machine-img" />
+                <div class="megadyne-slanted-cards">
+                  <div class="slanted-card-item">
+                    <img src="assets/images/machines/finishing-machine.png" alt="High Temp Dyeing Machine" />
+                    <span class="card-caption">SMG / NBSMG</span>
+                  </div>
+                  <div class="slanted-card-item">
+                    <img src="assets/images/machines/hero-washer.png" alt="Washing Line" />
+                    <span class="card-caption">SMG / NBSMG</span>
+                  </div>
+                  <div class="slanted-card-item">
+                    <img src="assets/images/home/exhibition-booth-bg.jpg" alt="Plant Installation" />
+                    <span class="card-caption">SMG / NBSMG</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 5: Turnkey Factory Projects -->
+              <div class="machine-slide" data-slide="5">
+                <div class="megadyne-slanted-cards">
+                  <div class="slanted-card-item">
+                    <img src="assets/images/machines/production-line.png" alt="Complete Factory Project" />
+                    <span class="card-caption">EGYPT AMERICA CENTER</span>
+                  </div>
+                  <div class="slanted-card-item">
+                    <img src="assets/images/machines/knitting-hero-2-clean.png" alt="Machinery Pavilion" />
+                    <span class="card-caption">EGYPT AMERICA CENTER</span>
+                  </div>
+                  <div class="slanted-card-item">
+                    <img src="assets/images/logo.png" alt="Egypt America Center" />
+                    <span class="card-caption">EGYPT AMERICA CENTER</span>
+                  </div>
+                </div>
               </div>
 
             </div>
 
             <!-- Slide Badge Label & Dots Controls -->
             <div class="hero-slide-controls" style="justify-content: center;">
-              <div class="hero-slide-badge" id="hero-slide-badge"><span style="color:#111111; font-weight:900;">01 /</span> REL-TEX CIRCULAR KNITTING MACHINE</div>
+              <div class="hero-slide-badge" id="hero-slide-badge"><span style="color:#111111; font-weight:900;">01
+                  /</span> REL-TEX CIRCULAR KNITTING MACHINE</div>
               <div class="slide-dots" id="hero-slide-dots">
                 <button class="slide-dot active" data-index="0" aria-label="Slide 1"></button>
                 <button class="slide-dot" data-index="1" aria-label="Slide 2"></button>
                 <button class="slide-dot" data-index="2" aria-label="Slide 3"></button>
                 <button class="slide-dot" data-index="3" aria-label="Slide 4"></button>
                 <button class="slide-dot" data-index="4" aria-label="Slide 5"></button>
+                <button class="slide-dot" data-index="5" aria-label="Slide 6"></button>
               </div>
             </div>
 
@@ -280,9 +376,12 @@
         <div class="container" style="padding-top: 60px; padding-bottom: 70px;">
           <div class="section-header text-center" style="margin-bottom: 45px;">
             <span class="section-badge" data-i18n="events.badge">EXHIBITIONS & EVENTS</span>
-            <h2 class="hero-title" style="font-size: 2.2rem; margin-top: 10px; margin-bottom: 12px;" data-i18n="events.title">International Exhibitions & Factory Events</h2>
-            <p style="color: var(--text-dark-secondary); max-width: 720px; margin: 0 auto; font-size: 1.05rem;" data-i18n="events.subtitle">
-              Explore Egypt America Center's participation in global textile trade fairs, live machine demonstrations, and client factory inaugurations.
+            <h2 class="hero-title" style="font-size: 2.2rem; margin-top: 10px; margin-bottom: 12px;"
+              data-i18n="events.title">International Exhibitions & Factory Events</h2>
+            <p style="color: var(--text-dark-secondary); max-width: 720px; margin: 0 auto; font-size: 1.05rem;"
+              data-i18n="events.subtitle">
+              Explore Egypt America Center's participation in global textile trade fairs, live machine demonstrations,
+              and client factory inaugurations.
             </p>
           </div>
 
@@ -296,9 +395,11 @@
                 <span class="media-tag-badge" data-i18n="events.item1_tag">PHOTO GALLERY</span>
               </div>
               <div class="event-card-info">
-                <span class="event-meta-date" data-i18n="events.item1_date">October 2025 • Milan Exhibition Centre</span>
+                <span class="event-meta-date" data-i18n="events.item1_date">October 2025 • Milan Exhibition
+                  Centre</span>
                 <h3 class="event-item-title" data-i18n="events.item1_title">ITMA Global Textile Machinery Fair</h3>
-                <p class="event-item-desc" data-i18n="events.item1_desc">Photo coverage from EAC's official pavilion showcasing REL-TEX circular & Kauo Heng flat machinery.</p>
+                <p class="event-item-desc" data-i18n="events.item1_desc">Photo coverage from EAC's official pavilion
+                  showcasing REL-TEX circular & Kauo Heng flat machinery.</p>
               </div>
             </div>
 
@@ -311,7 +412,8 @@
               <div class="event-card-info">
                 <span class="event-meta-date" data-i18n="events.item2_date">Live Demo • Mansoura Showroom</span>
                 <h3 class="event-item-title" data-i18n="events.item2_title">Kauo Heng 3D Flat Knitting Machine Demo</h3>
-                <p class="event-item-desc" data-i18n="events.item2_desc">High-definition video demonstration of 3D shoe upper and automated sweater knitting speed.</p>
+                <p class="event-item-desc" data-i18n="events.item2_desc">High-definition video demonstration of 3D shoe
+                  upper and automated sweater knitting speed.</p>
               </div>
             </div>
 
@@ -324,7 +426,8 @@
               <div class="event-card-info">
                 <span class="event-meta-date" data-i18n="events.item3_date">March 2025 • CICC Cairo</span>
                 <h3 class="event-item-title" data-i18n="events.item3_title">Cairo Fashion & Tex Expo Pavilion</h3>
-                <p class="event-item-desc" data-i18n="events.item3_desc">Egypt America Center pavilion showcasing Megadyne drive belts, Golden Roc needles, and spare parts.</p>
+                <p class="event-item-desc" data-i18n="events.item3_desc">Egypt America Center pavilion showcasing
+                  Megadyne drive belts, Golden Roc needles, and spare parts.</p>
               </div>
             </div>
 
@@ -335,9 +438,11 @@
                 <span class="media-tag-badge video-tag" data-i18n="events.item4_tag">FACTORY VIDEO</span>
               </div>
               <div class="event-card-info">
-                <span class="event-meta-date" data-i18n="events.item4_date">Client Inauguration • El Mahalla El Kubra</span>
+                <span class="event-meta-date" data-i18n="events.item4_date">Client Inauguration • El Mahalla El
+                  Kubra</span>
                 <h3 class="event-item-title" data-i18n="events.item4_title">Turnkey Factory Line Inauguration</h3>
-                <p class="event-item-desc" data-i18n="events.item4_desc">Video highlights of complete circular knitting line installation, alignment, and staff training by EAC engineers.</p>
+                <p class="event-item-desc" data-i18n="events.item4_desc">Video highlights of complete circular knitting
+                  line installation, alignment, and staff training by EAC engineers.</p>
               </div>
             </div>
 
@@ -456,702 +561,904 @@
           </div>
         </div>
       </section>
+        <!-- SECTION 4.5: INTERACTIVE WORLD MAP & GLOBAL SUPPLY NETWORK -->
+        <section class="world-map-section light-theme-map" id="world-map-section">
+          <div class="container">
+            <div class="section-header text-center" style="margin-bottom: 35px;">
+              <span class="section-badge gold-glow-badge"
+                style="background: rgba(211, 47, 47, 0.08); color: #D32F2F; border: 1px solid rgba(211, 47, 47, 0.2);">
+                <span class="badge-icon">🌍</span>
+                <span data-i18n="network.badge">Global Supply & Agency Network</span>
+              </span>
+              <h2 class="hero-title"
+                style="font-size: 2.2rem; font-weight: 900; margin-top: 10px; margin-bottom: 12px; color: #0f172a;"
+                data-i18n="network.title">
+                شبكة الوكالات العالمية <span style="color: #D32F2F;">• مصر مركز الشرق الأوسط</span>
+              </h2>
+              <p style="color: #475569; max-width: 760px; margin: 0 auto; font-size: 1rem; line-height: 1.6;"
+                data-i18n="network.desc">
+                تتصل وكالاتنا التجارية العالمية المعتمدة من تايوان وإيطاليا والصين وألمانيا بمركزنا الرئيسي في المنصورة،
+                مصر لتوفير أسرع دعم لوجستي وقطع غيار أصلية.
+              </p>
+            </div>
 
-      <!-- SECTION 5: CALL TO ACTION & CONSULTATION BANNER -->
-      <section class="home-cta-section">
-        <div class="container">
-          <div class="cta-banner-card glass-card">
-            <div class="cta-content text-center">
-              <h2 data-i18n="cta.title" style="font-size: 2.2rem; font-weight: 800; margin-bottom: 16px;">Ready to
-                Upgrade Your Textile Manufacturing Facility?</h2>
-              <p data-i18n="cta.desc"
-                style="font-size: 1.1rem; color: var(--text-dark-secondary); max-width: 680px; margin: 0 auto 28px;">
-                Consult with our international engineers today for custom machine configurations or express spare parts
-                dispatch.</p>
-              <div class="cta-btn-group">
-                <button class="btn-primary-orange trigger-quote-modal">
-                  <span data-i18n="cta.btn">Contact Sales Team</span> <span class="arrow">↗</span>
-                </button>
-                <a href="https://wa.me/201001339300" target="_blank" rel="noopener" class="btn-secondary-outline">
-                  <span>WhatsApp Direct</span> <span>💬</span>
-                </a>
+            <!-- World Map Canvas / SVG Container (Clean Light Card) -->
+            <div class="world-map-container"
+              style="position: relative; overflow: hidden; border-radius: 24px; padding: 30px; background: #f8fafc; border: 1px solid #e2e8f0; box-shadow: 0 10px 35px rgba(15, 23, 42, 0.06);">
+
+              <!-- Real 3D Spherical Globe Stage -->
+              <div class="map-vector-wrapper"
+                style="position: relative; min-height: 520px; display: flex; align-items: center; justify-content: center;">
+
+                <!-- 3D Spherical Globe Body -->
+                <div class="real-3d-globe-sphere">
+                  <!-- Floating Ambient Particles around Globe -->
+                  <div class="globe-particle particle-1"></div>
+                  <div class="globe-particle particle-2"></div>
+                  <div class="globe-particle particle-3"></div>
+                  <div class="globe-particle particle-4"></div>
+                  <div class="globe-particle particle-5"></div>
+                  <div class="globe-particle particle-6"></div>
+
+                  <!-- Globe Sphere Ball -->
+                  <div class="globe-ball">
+                    <!-- Glass Specular Highlight Overlay -->
+                    <div class="globe-glass-specular"></div>
+
+                    <!-- 3D Latitude and Longitude Lines with Slow Rotation -->
+                    <svg class="globe-grid-svg" viewBox="0 0 400 400"
+                      style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;">
+                      <circle cx="200" cy="200" r="190" fill="none" stroke="rgba(255, 255, 255, 0.45)" stroke-width="1.8" />
+                      <!-- Latitudes -->
+                      <ellipse cx="200" cy="80" rx="140" ry="35" fill="none" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1"
+                        stroke-dasharray="4 4" />
+                      <ellipse cx="200" cy="140" rx="180" ry="45" fill="none" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1"
+                        stroke-dasharray="4 4" />
+                      <line x1="10" y1="200" x2="390" y2="200" stroke="rgba(255, 255, 255, 0.45)" stroke-width="1.2"
+                        stroke-dasharray="5 5" />
+                      <ellipse cx="200" cy="260" rx="180" ry="45" fill="none" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1"
+                        stroke-dasharray="4 4" />
+                      <ellipse cx="200" cy="320" rx="140" ry="35" fill="none" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1"
+                        stroke-dasharray="4 4" />
+                      <!-- Longitudes -->
+                      <ellipse cx="200" cy="200" rx="60" ry="190" fill="none" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1"
+                        stroke-dasharray="4 4" />
+                      <ellipse cx="200" cy="200" rx="130" ry="190" fill="none" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1"
+                        stroke-dasharray="4 4" />
+                      <line x1="200" y1="10" x2="200" y2="390" stroke="rgba(255, 255, 255, 0.45)" stroke-width="1.2"
+                        stroke-dasharray="5 5" />
+
+                      <!-- 3D Globe Continent Vector Shapes (Realistic World Map Map Proportions) -->
+                      <!-- Africa & Egypt HQ -->
+                      <path d="M 170,150 Q 230,155 240,210 T 215,315 T 180,285 T 155,200 Z" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.8" opacity="0.92" />
+                      <!-- Europe & Mediterranean -->
+                      <path d="M 150,75 Q 215,65 240,110 T 175,145 Z" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8" opacity="0.88" />
+                      <!-- Italy Peninsula -->
+                      <path d="M 175,115 Q 182,125 180,135" fill="none" stroke="#94a3b8" stroke-width="1.5" />
+                      <!-- Asia Continent -->
+                      <path d="M 230,65 Q 330,45 385,105 T 365,215 T 285,225 T 230,140 Z" fill="#e2e8f0" stroke="#94a3b8" stroke-width="0.8" opacity="0.88" />
+                      <!-- Taiwan Island -->
+                      <circle cx="316" cy="192" r="6" fill="#cbd5e1" stroke="#94a3b8" stroke-width="0.8" />
+                      <!-- Japan Archipelago -->
+                      <path d="M 335,130 Q 345,140 340,150" fill="none" stroke="#94a3b8" stroke-width="1.5" />
+                      <!-- Americas -->
+                      <path d="M 35,75 Q 95,65 125,135 T 65,200 Z" fill="#cbd5e1" stroke="#94a3b8" stroke-width="0.8" opacity="0.75" />
+                    </svg>
+
+                    <!-- 3D Arc Beams & Cargo Ships Sailing to Egypt (x: 200, y: 190) -->
+                    <svg class="globe-arcs-svg" viewBox="0 0 400 400"
+                      style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3;">
+                      <defs>
+                        <path id="route-taiwan-egypt" d="M 316,192 Q 260,130 200,190" />
+                        <path id="route-italy-egypt" d="M 180,128 Q 190,155 200,190" />
+                        <path id="route-china-egypt" d="M 288,152 Q 240,125 200,190" />
+                        <path id="route-germany-egypt" d="M 168,96 Q 182,138 200,190" />
+                        <path id="route-japan-egypt" d="M 340,136 Q 270,110 200,190" />
+                      </defs>
+
+                      <use href="#route-taiwan-egypt" class="arc-line arc-taiwan" />
+                      <use href="#route-italy-egypt" class="arc-line arc-italy" />
+                      <use href="#route-china-egypt" class="arc-line arc-china" />
+                      <use href="#route-germany-egypt" class="arc-line arc-germany" />
+                      <use href="#route-japan-egypt" class="arc-line arc-japan" />
+
+                      <!-- Sailing Cargo Ships traveling towards Egypt HQ -->
+                      <g class="sailing-cargo-ship">
+                        <text font-size="16" text-anchor="middle" dy="5">🚢</text>
+                        <animateMotion dur="8.5s" repeatCount="indefinite" rotate="auto">
+                          <mpath href="#route-taiwan-egypt" />
+                        </animateMotion>
+                      </g>
+
+                      <g class="sailing-cargo-ship">
+                        <text font-size="14" text-anchor="middle" dy="4">🚢</text>
+                        <animateMotion dur="6.5s" repeatCount="indefinite" rotate="auto">
+                          <mpath href="#route-italy-egypt" />
+                        </animateMotion>
+                      </g>
+
+                      <g class="sailing-cargo-ship">
+                        <text font-size="14" text-anchor="middle" dy="4">⛵</text>
+                        <animateMotion dur="10.5s" repeatCount="indefinite" rotate="auto">
+                          <mpath href="#route-china-egypt" />
+                        </animateMotion>
+                      </g>
+                    </svg>
+                  </div>
+
+                  <!-- 3D Sphere Glowing Atmosphere Ring -->
+                  <div class="globe-atmosphere"></div>
+
+                  <!-- 3D Country Nodes Attached around the Sphere at Realistic Geographic Locations -->
+                  <div class="map-node node-egypt-hq" style="left: 50%; top: 47.5%;" data-country="Egypt" data-node-key="egypt"
+                    data-info="مركز مصر أمريكا - المنصورة (المقر الرئيسي والمركز اللوجستي الأكبر للشرق الأوسط)">
+                    <div class="node-pulse hq-pulse"></div>
+                    <div class="node-pin hq-pin" data-i18n="network.pin_hq">🇪🇬 المقر الرئيسي (مصر)</div>
+                  </div>
+
+                  <div class="map-node node-taiwan" style="left: 79%; top: 48%;" data-country="Taiwan" data-node-key="taiwan"
+                    data-info="وكالات Center Circle & Kauo Heng (تايوان) - آلات التريكو الدائرية والمسطحة">
+                    <div class="node-pulse"></div>
+                    <div class="node-pin" data-i18n="network.pin_taiwan">🇹🇼 تايوان (Center Circle)</div>
+                  </div>
+
+                  <div class="map-node node-italy" style="left: 45%; top: 32%;" data-country="Italy" data-node-key="italy"
+                    data-info="وكالة Megadyne (إيطاليا) - سيور التوقيت البولي يوريثان والمطاط">
+                    <div class="node-pulse"></div>
+                    <div class="node-pin" data-i18n="network.pin_italy">🇮🇹 إيطاليا (Megadyne Belts)</div>
+                  </div>
+
+                  <div class="map-node node-china" style="left: 72%; top: 38%;" data-country="China" data-node-key="china"
+                    data-info="وكالات NBSMG & SMG (الصين) - المحامل الدقيقة ومغذيات الخيوط الإلكترونية">
+                    <div class="node-pulse"></div>
+                    <div class="node-pin" data-i18n="network.pin_china">🇨🇳 الصين (NBSMG & SMG)</div>
+                  </div>
+
+                  <div class="map-node node-germany" style="left: 42%; top: 24%;" data-country="Germany" data-node-key="germany"
+                    data-info="شراكات التكنولوجيا الألمانية - إبر وغرز النسيج عالية الدقة">
+                    <div class="node-pulse"></div>
+                    <div class="node-pin" data-i18n="network.pin_germany">🇩🇪 ألمانيا (German Spares)</div>
+                  </div>
+
+                  <div class="map-node node-japan" style="left: 85%; top: 34%;" data-country="Japan" data-node-key="japan"
+                    data-info="الأنظمة اليابانية الرقمية والإنفرتر الصناعي">
+                    <div class="node-pulse"></div>
+                    <div class="node-pin" data-i18n="network.pin_japan">🇯🇵 اليابان (Industrial Electronics)</div>
+                  </div>
+
+                </div>
+
               </div>
+
+              <!-- Map Info Drawer Footer (Clean Light Card) -->
+              <div class="map-info-footer" id="map-node-info"
+                style="margin-top: 20px; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 16px; padding: 16px 24px; display: flex; align-items: center; gap: 14px;">
+                <span style="font-size: 1.6rem;">📍</span>
+                <div>
+                  <strong id="map-info-title" data-i18n="network.info_title"
+                    style="color: #0f172a; font-size: 0.98rem; display: block; margin-bottom: 2px;">مركز مصر أمريكا -
+                    المنصورة، مصر (المقر الرئيسي)</strong>
+                  <p id="map-info-desc" data-i18n="network.info_desc" style="color: #475569; font-size: 0.85rem; margin: 0;">شريان التوريد والدعم
+                    الفني المباشر لآلات النسيج وقطع الغيار الأصلية في مصر والشرق الأوسط.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 5: CALL TO ACTION & CONSULTATION BANNER -->
+        <section class="home-cta-section">
+          <div class="container">
+            <div class="cta-banner-card glass-card">
+              <div class="cta-content text-center">
+                <h2 data-i18n="cta.title" style="font-size: 2.2rem; font-weight: 800; margin-bottom: 16px;">Ready to
+                  Upgrade Your Textile Manufacturing Facility?</h2>
+                <p data-i18n="cta.desc"
+                  style="font-size: 1.1rem; color: var(--text-dark-secondary); max-width: 680px; margin: 0 auto 28px;">
+                  Consult with our international engineers today for custom machine configurations or express spare
+                  parts
+                  dispatch.</p>
+                <div class="cta-btn-group">
+                  <button class="btn-primary-orange trigger-quote-modal">
+                    <span data-i18n="cta.btn">Contact Sales Team</span> <span class="arrow">↗</span>
+                  </button>
+                  <a href="https://wa.me/201001339300" target="_blank" rel="noopener" class="btn-secondary-outline">
+                    <span data-i18n="cta.whatsapp">WhatsApp Direct</span> <span>💬</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </section>
+
+      <!-- VIEW 2: ABOUT US -->
+      <section id="view-about" class="page-view">
+        <div class="container">
+          <div class="about-hero text-center" style="margin-bottom: 60px;">
+            <div class="section-badge" data-i18n="about.badge">Our Heritage & Leadership</div>
+            <h1 class="hero-title" data-i18n="about.title">About Egypt America Center - Mohammed Hammouda</h1>
+            <p class="hero-description" data-i18n="about.subtitle">Bridging international engineering excellence with
+              global textile production since 1990.</p>
+          </div>
+
+          <!-- Official Brand Emblem Showcase -->
+          <div class="story-grid align-center">
+            <div class="story-text-side">
+              <h2 data-i18n="about.story_title">Our Journey & Heritage</h2>
+              <p data-i18n="about.story_text">
+                Egypt America Center - Mohammed Hammouda was established in 1990 to bring international industrial
+                standards and premier machinery brands to global markets. Representing top-tier agencies from Taiwan,
+                Italy, and China, we ensure uninterrupted production for textile plants with genuine OEM parts and
+                expert
+                technical support.
+              </p>
+
+              <div class="about-stats-pills" style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 25px;">
+                <div class="stat-pill-item glass-card"
+                  style="padding: 18px 24px; border-radius: 16px; text-align: center; flex: 1; min-width: 140px;">
+                  <h3 class="gold-text" style="font-size: 1.8rem; margin: 0; font-weight: 800;">30+</h3>
+                  <span style="font-size: 0.85rem; color: var(--text-dark-secondary);" data-i18n="stats.years">Years
+                    Excellence</span>
+                </div>
+                <div class="stat-pill-item glass-card"
+                  style="padding: 18px 24px; border-radius: 16px; text-align: center; flex: 1; min-width: 140px;">
+                  <h3 class="gold-text" style="font-size: 1.8rem; margin: 0; font-weight: 800;">10+</h3>
+                  <span style="font-size: 0.85rem; color: var(--text-dark-secondary);" data-i18n="stats.brands">Global
+                    Agencies</span>
+                </div>
+                <div class="stat-pill-item glass-card"
+                  style="padding: 18px 24px; border-radius: 16px; text-align: center; flex: 1; min-width: 140px;">
+                  <h3 class="gold-text" style="font-size: 1.8rem; margin: 0; font-weight: 800;">100%</h3>
+                  <span style="font-size: 0.85rem; color: var(--text-dark-secondary);" data-i18n="stats.oem">Genuine OEM
+                    Parts</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="story-img-side text-center">
+              <div class="glass-card logo-showcase-card"
+                style="padding: 40px 30px; border-radius: 24px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass-dark); display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <img src="assets/images/logo.png" alt="Egypt America Center Official Logo"
+                  style="max-width: 220px; height: auto; margin-bottom: 20px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" />
+                <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 6px;">EGYPT AMERICA <span
+                    class="gold-text">CENTER</span></h3>
+                <p style="color: var(--text-dark-secondary); font-size: 0.9rem; margin: 0;">Mohammed Hammouda / مركز مصر
+                  أمريكا - محمد حمودة</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="vision-mission-cards"
+            style="margin-top: 60px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">
+            <div class="vm-card glass-card" style="padding: 35px; border-radius: 20px;">
+              <div class="vm-icon" style="font-size: 2.2rem; margin-bottom: 15px;">🎯</div>
+              <h3 data-i18n="about.vision_title" style="font-size: 1.4rem; margin-bottom: 12px;">Our Vision</h3>
+              <p data-i18n="about.vision_text" style="line-height: 1.6; color: var(--text-dark-secondary);">To pioneer
+                smart, eco-efficient textile machinery distribution with zero-downtime logistics support worldwide.</p>
+            </div>
+            <div class="vm-card glass-card" style="padding: 35px; border-radius: 20px;">
+              <div class="vm-icon" style="font-size: 2.2rem; margin-bottom: 15px;">⚡</div>
+              <h3 data-i18n="about.mission_title" style="font-size: 1.4rem; margin-bottom: 12px;">Our Mission</h3>
+              <p data-i18n="about.mission_text" style="line-height: 1.6; color: var(--text-dark-secondary);">Delivering
+                genuine, high-precision industrial solutions that maximize machinery longevity and output efficiency.
+              </p>
+            </div>
+          </div>
+
+          <!-- Official Represented Agencies Grid (No AI Images) -->
+          <div class="section-header text-center" style="margin-top: 80px; margin-bottom: 40px;">
+            <h2 data-i18n="partners.title">World-Class Brand Partners</h2>
+            <p style="color: var(--text-dark-secondary); font-size: 1rem;">Official Authorized Commercial Agencies &
+              Distribution Hubs</p>
+          </div>
+
+          <div class="about-partners-logos-grid"
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 20px;">
+            <div class="glass-card partner-logo-box"
+              style="padding: 22px; text-align: center; border-radius: 16px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; height: 105px;">
+              <img src="assets/images/partners/rel-tex.svg" alt="REL-TEX Agency"
+                style="max-height: 50px; max-width: 135px; object-fit: contain;" />
+            </div>
+            <div class="glass-card partner-logo-box"
+              style="padding: 22px; text-align: center; border-radius: 16px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; height: 105px;">
+              <img src="assets/images/partners/golden-roc.svg" alt="Golden Roc Agency"
+                style="max-height: 50px; max-width: 135px; object-fit: contain;" />
+            </div>
+            <div class="glass-card partner-logo-box"
+              style="padding: 22px; text-align: center; border-radius: 16px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; height: 105px;">
+              <img src="assets/images/partners/smg.svg" alt="SMG NBSMG Agency"
+                style="max-height: 50px; max-width: 135px; object-fit: contain;" />
+            </div>
+            <div class="glass-card partner-logo-box"
+              style="padding: 22px; text-align: center; border-radius: 16px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; height: 105px;">
+              <img src="assets/images/partners/kauo-heng.svg" alt="Kauo Heng Agency"
+                style="max-height: 50px; max-width: 135px; object-fit: contain;" />
+            </div>
+            <div class="glass-card partner-logo-box"
+              style="padding: 22px; text-align: center; border-radius: 16px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; height: 105px;">
+              <img src="assets/images/partners/dahu.svg" alt="Dahu Crochet Agency"
+                style="max-height: 50px; max-width: 135px; object-fit: contain;" />
+            </div>
+            <div class="glass-card partner-logo-box"
+              style="padding: 22px; text-align: center; border-radius: 16px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; height: 105px;">
+              <img src="assets/images/partners/v-star.svg" alt="V-Star Industrial Agency"
+                style="max-height: 50px; max-width: 135px; object-fit: contain;" />
+            </div>
+            <div class="glass-card partner-logo-box"
+              style="padding: 22px; text-align: center; border-radius: 16px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; height: 105px;">
+              <img src="assets/images/partners/baiyang.svg" alt="Baiyang Machinery Agency"
+                style="max-height: 50px; max-width: 135px; object-fit: contain;" />
+            </div>
+            <div class="glass-card partner-logo-box"
+              style="padding: 22px; text-align: center; border-radius: 16px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; height: 105px;">
+              <img src="assets/images/partners/king-ultrasonic.svg" alt="King Ultrasonic Agency"
+                style="max-height: 50px; max-width: 135px; object-fit: contain;" />
+            </div>
+            <div class="glass-card partner-logo-box"
+              style="padding: 22px; text-align: center; border-radius: 16px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; height: 105px;">
+              <img src="assets/images/partners/center-circle.png" alt="Center Circle Agency"
+                style="max-height: 50px; max-width: 135px; object-fit: contain;" />
+            </div>
+            <div class="glass-card partner-logo-box"
+              style="padding: 22px; text-align: center; border-radius: 16px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; height: 105px;">
+              <img src="assets/images/partners/megadyne.png" alt="Megadyne Group Agency"
+                style="max-height: 50px; max-width: 135px; object-fit: contain;" />
             </div>
           </div>
         </div>
       </section>
 
-    </section>
+      <!-- VIEW 3: PRODUCTS -->
+      <section id="view-products" class="page-view">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-badge" data-i18n="products.badge">Machinery & Components Catalog</div>
+            <h2 data-i18n="products.title">High-Performance Textile Solutions</h2>
+            <p data-i18n="products.subtitle">Discover our comprehensive range of high-efficiency machinery and original
+              spare parts.</p>
+          </div>
 
-    <!-- VIEW 2: ABOUT US -->
-    <section id="view-about" class="page-view">
-      <div class="container">
-        <div class="about-hero text-center" style="margin-bottom: 60px;">
-          <div class="section-badge" data-i18n="about.badge">Our Heritage & Leadership</div>
-          <h1 class="hero-title" data-i18n="about.title">About Egypt America Center - Mohammed Hammouda</h1>
-          <p class="hero-description" data-i18n="about.subtitle">Bridging international engineering excellence with
-            global textile production since 1990.</p>
+          <div class="catalog-controls glass-panel">
+            <div class="category-tabs">
+              <button class="cat-tab-btn active" data-category="all" data-i18n="products.cat_all">All Products</button>
+              <button class="cat-tab-btn" data-category="machinery"
+                data-i18n="products.cat_machinery">Machinery</button>
+              <button class="cat-tab-btn" data-category="spare_parts" data-i18n="products.cat_spare_parts">Spare
+                Parts</button>
+            </div>
+
+            <div class="catalog-search-wrap">
+              <input type="text" id="product-search-input-page" class="search-input-field"
+                data-i18n="products.search_placeholder" placeholder="Search by name, model or OEM code..." />
+              <select id="product-brand-filter-page" class="brand-select-field">
+                <option value="all">All Brands (جميع الوكالات والشركات)</option>
+                <option value="rel-tex">REL-TEX (Taiwan 🇹🇼)</option>
+                <option value="golden-roc">GOLDEN ROC (China 🇨🇳)</option>
+                <option value="nbsmg">SMG / NBSMG (China 🇨🇳)</option>
+                <option value="kauo-heng">Kauo Heng (Taiwan 🇹🇼)</option>
+                <option value="dahu">DAHU (China 🇨🇳)</option>
+                <option value="v-star">V-STAR (China 🇨🇳)</option>
+                <option value="baiyang">BAIYANG (China 🇨🇳)</option>
+                <option value="king-ultrasonic">KING ULTRASONIC (China 🇨🇳)</option>
+                <option value="center-circle">Center Circle (Taiwan 🇹🇼)</option>
+                <option value="megadyne">Megadyne (Italy 🇮🇹)</option>
+                <option value="general">General Industrial OEM</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Dynamic Products Page Grid -->
+          <div id="products-page-catalog-grid" class="products-grid"></div>
         </div>
+      </section>
 
-        <!-- Official Brand Emblem Showcase -->
-        <div class="story-grid align-center">
-          <div class="story-text-side">
-            <h2 data-i18n="about.story_title">Our Journey & Heritage</h2>
-            <p data-i18n="about.story_text">
-              Egypt America Center - Mohammed Hammouda was established in 1990 to bring international industrial
-              standards and premier machinery brands to global markets. Representing top-tier agencies from Taiwan,
-              Italy, and China, we ensure uninterrupted production for textile plants with genuine OEM parts and expert
-              technical support.
+      <!-- VIEW 4: BRANDS & PARTNERS -->
+      <section id="view-brands" class="page-view">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-badge" data-i18n="brands_page.badge">Official Authorized Represented Brands</div>
+            <h2 data-i18n="brands_page.title">Our International Agencies</h2>
+            <p data-i18n="brands_page.subtitle">Click any partner brand to explore specialized machinery catalogs,
+              technical resources, and dedicated sales teams.</p>
+          </div>
+
+          <!-- Dynamic Brand Portals Horizontal Moving Stream -->
+          <div class="brands-portal-grid-wrapper">
+            <div id="brands-page-grid" class="brands-portal-grid"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEW VIEW: DEDICATED EVENTS & EXHIBITIONS PAGE -->
+      <section id="view-events" class="page-view eac-events">
+        <div class="container" style="padding-top: 20px; padding-bottom: 90px;">
+
+          <!-- Header Banner -->
+          <div class="section-header text-center" style="margin-bottom: 45px;">
+            <div class="section-badge" data-i18n="events.badge">MEDIA & EXHIBITIONS HUB</div>
+            <h2 style="font-size: 2.6rem; margin-top: 10px; margin-bottom: 14px;" data-i18n="events.page_title">
+              Events, Fairs & Video Gallery
+            </h2>
+            <p style="color: var(--text-dark-secondary); max-width: 780px; margin: 0 auto; font-size: 1.1rem;"
+              data-i18n="events.page_subtitle">
+              Welcome to the official Egypt America Center events portal. Browse photo galleries, watch high-definition
+              machine video demos, and explore our global exhibition history.
             </p>
+          </div>
 
-            <div class="about-stats-pills" style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 25px;">
-              <div class="stat-pill-item glass-card"
-                style="padding: 18px 24px; border-radius: 16px; text-align: center; flex: 1; min-width: 140px;">
-                <h3 class="gold-text" style="font-size: 1.8rem; margin: 0; font-weight: 800;">30+</h3>
-                <span style="font-size: 0.85rem; color: var(--text-dark-secondary);" data-i18n="stats.years">Years
-                  Excellence</span>
+          <!-- Full Events & Exhibitions Grid -->
+          <div class="events-grid-full">
+
+            <!-- Event 1: ITMA Exhibition Milan -->
+            <div class="event-card-item">
+              <div class="event-media-slot photo-slot">
+                <div class="media-icon-box">📷</div>
+                <span class="media-tag-badge">PHOTO GALLERY</span>
+                <span class="media-upload-prompt">+ Click to Upload / View Event Photos</span>
               </div>
-              <div class="stat-pill-item glass-card"
-                style="padding: 18px 24px; border-radius: 16px; text-align: center; flex: 1; min-width: 140px;">
-                <h3 class="gold-text" style="font-size: 1.8rem; margin: 0; font-weight: 800;">10+</h3>
-                <span style="font-size: 0.85rem; color: var(--text-dark-secondary);" data-i18n="stats.brands">Global
-                  Agencies</span>
-              </div>
-              <div class="stat-pill-item glass-card"
-                style="padding: 18px 24px; border-radius: 16px; text-align: center; flex: 1; min-width: 140px;">
-                <h3 class="gold-text" style="font-size: 1.8rem; margin: 0; font-weight: 800;">100%</h3>
-                <span style="font-size: 0.85rem; color: var(--text-dark-secondary);" data-i18n="stats.oem">Genuine OEM
-                  Parts</span>
+              <div class="event-card-info">
+                <span class="event-meta-date">📍 Milan Exhibition Centre • 📅 October 2025</span>
+                <h3 class="event-item-title">ITMA International Textile Machinery Fair</h3>
+                <p class="event-item-desc">Photo coverage from EAC's official pavilion showcasing REL-TEX circular &
+                  Kauo
+                  Heng flat machinery.</p>
               </div>
             </div>
-          </div>
 
-          <div class="story-img-side text-center">
-            <div class="glass-card logo-showcase-card"
-              style="padding: 40px 30px; border-radius: 24px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass-dark); display: flex; flex-direction: column; align-items: center; justify-content: center;">
-              <img src="assets/images/logo.png" alt="Egypt America Center Official Logo"
-                style="max-width: 220px; height: auto; margin-bottom: 20px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" />
-              <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 6px;">EGYPT AMERICA <span
-                  class="gold-text">CENTER</span></h3>
-              <p style="color: var(--text-dark-secondary); font-size: 0.9rem; margin: 0;">Mohammed Hammouda / مركز مصر
-                أمريكا - محمد حمودة</p>
+            <!-- Event 2: Kauo Heng 3D Flat Knitting Machine Video Demo -->
+            <div class="event-card-item">
+              <div class="event-media-slot video-slot">
+                <div class="video-play-icon">▶</div>
+                <span class="media-tag-badge video-tag">VIDEO DEMO</span>
+                <span class="media-upload-prompt">🎥 Click to Play / Upload Machine Video</span>
+              </div>
+              <div class="event-card-info">
+                <span class="event-meta-date">📍 Mansoura Showroom • 🎥 HD Video Demo</span>
+                <h3 class="event-item-title">Kauo Heng 3D Flat Knitting Machine Demo</h3>
+                <p class="event-item-desc">High-definition video demonstration of 3D shoe upper and automated sweater
+                  knitting speed.</p>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <div class="vision-mission-cards"
-          style="margin-top: 60px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">
-          <div class="vm-card glass-card" style="padding: 35px; border-radius: 20px;">
-            <div class="vm-icon" style="font-size: 2.2rem; margin-bottom: 15px;">🎯</div>
-            <h3 data-i18n="about.vision_title" style="font-size: 1.4rem; margin-bottom: 12px;">Our Vision</h3>
-            <p data-i18n="about.vision_text" style="line-height: 1.6; color: var(--text-dark-secondary);">To pioneer
-              smart, eco-efficient textile machinery distribution with zero-downtime logistics support worldwide.</p>
-          </div>
-          <div class="vm-card glass-card" style="padding: 35px; border-radius: 20px;">
-            <div class="vm-icon" style="font-size: 2.2rem; margin-bottom: 15px;">⚡</div>
-            <h3 data-i18n="about.mission_title" style="font-size: 1.4rem; margin-bottom: 12px;">Our Mission</h3>
-            <p data-i18n="about.mission_text" style="line-height: 1.6; color: var(--text-dark-secondary);">Delivering
-              genuine, high-precision industrial solutions that maximize machinery longevity and output efficiency.</p>
-          </div>
-        </div>
-
-        <!-- Official Represented Agencies Grid (No AI Images) -->
-        <div class="section-header text-center" style="margin-top: 80px; margin-bottom: 40px;">
-          <h2 data-i18n="partners.title">World-Class Brand Partners</h2>
-          <p style="color: var(--text-dark-secondary); font-size: 1rem;">Official Authorized Commercial Agencies &
-            Distribution Hubs</p>
-        </div>
-
-        <div class="about-partners-logos-grid"
-          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 20px;">
-          <div class="glass-card partner-logo-box"
-            style="padding: 22px; text-align: center; border-radius: 16px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; height: 105px;">
-            <img src="assets/images/partners/rel-tex.svg" alt="REL-TEX Agency"
-              style="max-height: 50px; max-width: 135px; object-fit: contain;" />
-          </div>
-          <div class="glass-card partner-logo-box"
-            style="padding: 22px; text-align: center; border-radius: 16px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; height: 105px;">
-            <img src="assets/images/partners/golden-roc.svg" alt="Golden Roc Agency"
-              style="max-height: 50px; max-width: 135px; object-fit: contain;" />
-          </div>
-          <div class="glass-card partner-logo-box"
-            style="padding: 22px; text-align: center; border-radius: 16px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; height: 105px;">
-            <img src="assets/images/partners/smg.svg" alt="SMG NBSMG Agency"
-              style="max-height: 50px; max-width: 135px; object-fit: contain;" />
-          </div>
-          <div class="glass-card partner-logo-box"
-            style="padding: 22px; text-align: center; border-radius: 16px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; height: 105px;">
-            <img src="assets/images/partners/kauo-heng.svg" alt="Kauo Heng Agency"
-              style="max-height: 50px; max-width: 135px; object-fit: contain;" />
-          </div>
-          <div class="glass-card partner-logo-box"
-            style="padding: 22px; text-align: center; border-radius: 16px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; height: 105px;">
-            <img src="assets/images/partners/dahu.svg" alt="Dahu Crochet Agency"
-              style="max-height: 50px; max-width: 135px; object-fit: contain;" />
-          </div>
-          <div class="glass-card partner-logo-box"
-            style="padding: 22px; text-align: center; border-radius: 16px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; height: 105px;">
-            <img src="assets/images/partners/v-star.svg" alt="V-Star Industrial Agency"
-              style="max-height: 50px; max-width: 135px; object-fit: contain;" />
-          </div>
-          <div class="glass-card partner-logo-box"
-            style="padding: 22px; text-align: center; border-radius: 16px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; height: 105px;">
-            <img src="assets/images/partners/baiyang.svg" alt="Baiyang Machinery Agency"
-              style="max-height: 50px; max-width: 135px; object-fit: contain;" />
-          </div>
-          <div class="glass-card partner-logo-box"
-            style="padding: 22px; text-align: center; border-radius: 16px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; height: 105px;">
-            <img src="assets/images/partners/king-ultrasonic.svg" alt="King Ultrasonic Agency"
-              style="max-height: 50px; max-width: 135px; object-fit: contain;" />
-          </div>
-          <div class="glass-card partner-logo-box"
-            style="padding: 22px; text-align: center; border-radius: 16px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; height: 105px;">
-            <img src="assets/images/partners/center-circle.png" alt="Center Circle Agency"
-              style="max-height: 50px; max-width: 135px; object-fit: contain;" />
-          </div>
-          <div class="glass-card partner-logo-box"
-            style="padding: 22px; text-align: center; border-radius: 16px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; height: 105px;">
-            <img src="assets/images/partners/megadyne.png" alt="Megadyne Group Agency"
-              style="max-height: 50px; max-width: 135px; object-fit: contain;" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- VIEW 3: PRODUCTS -->
-    <section id="view-products" class="page-view">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-badge" data-i18n="products.badge">Machinery & Components Catalog</div>
-          <h2 data-i18n="products.title">High-Performance Textile Solutions</h2>
-          <p data-i18n="products.subtitle">Discover our comprehensive range of high-efficiency machinery and original
-            spare parts.</p>
-        </div>
-
-        <div class="catalog-controls glass-panel">
-          <div class="category-tabs">
-            <button class="cat-tab-btn active" data-category="all" data-i18n="products.cat_all">All Products</button>
-            <button class="cat-tab-btn" data-category="machinery" data-i18n="products.cat_machinery">Machinery</button>
-            <button class="cat-tab-btn" data-category="spare_parts" data-i18n="products.cat_spare_parts">Spare
-              Parts</button>
-          </div>
-
-          <div class="catalog-search-wrap">
-            <input type="text" id="product-search-input-page" class="search-input-field"
-              data-i18n="products.search_placeholder" placeholder="Search by name, model or OEM code..." />
-            <select id="product-brand-filter-page" class="brand-select-field">
-              <option value="all">All Brands (جميع الوكالات والشركات)</option>
-              <option value="rel-tex">REL-TEX (Taiwan 🇹🇼)</option>
-              <option value="golden-roc">GOLDEN ROC (China 🇨🇳)</option>
-              <option value="nbsmg">SMG / NBSMG (China 🇨🇳)</option>
-              <option value="kauo-heng">Kauo Heng (Taiwan 🇹🇼)</option>
-              <option value="dahu">DAHU (China 🇨🇳)</option>
-              <option value="v-star">V-STAR (China 🇨🇳)</option>
-              <option value="baiyang">BAIYANG (China 🇨🇳)</option>
-              <option value="king-ultrasonic">KING ULTRASONIC (China 🇨🇳)</option>
-              <option value="center-circle">Center Circle (Taiwan 🇹🇼)</option>
-              <option value="megadyne">Megadyne (Italy 🇮🇹)</option>
-              <option value="general">General Industrial OEM</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Dynamic Products Page Grid -->
-        <div id="products-page-catalog-grid" class="products-grid"></div>
-      </div>
-    </section>
-
-    <!-- VIEW 4: BRANDS & PARTNERS -->
-    <section id="view-brands" class="page-view">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-badge" data-i18n="brands_page.badge">Official Authorized Represented Brands</div>
-          <h2 data-i18n="brands_page.title">Our International Agencies</h2>
-          <p data-i18n="brands_page.subtitle">Click any partner brand to explore specialized machinery catalogs,
-            technical resources, and dedicated sales teams.</p>
-        </div>
-
-        <!-- Dynamic Brand Portals Horizontal Moving Stream -->
-        <div class="brands-portal-grid-wrapper">
-          <div id="brands-page-grid" class="brands-portal-grid"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- NEW VIEW: DEDICATED EVENTS & EXHIBITIONS PAGE -->
-    <section id="view-events" class="page-view eac-events">
-      <div class="container" style="padding-top: 130px; padding-bottom: 90px;">
-        
-        <!-- Header Banner -->
-        <div class="section-header text-center" style="margin-bottom: 45px;">
-          <div class="section-badge" data-i18n="events.badge">MEDIA & EXHIBITIONS HUB</div>
-          <h2 style="font-size: 2.6rem; margin-top: 10px; margin-bottom: 14px;" data-i18n="events.page_title">
-            Events, Fairs & Video Gallery
-          </h2>
-          <p style="color: var(--text-dark-secondary); max-width: 780px; margin: 0 auto; font-size: 1.1rem;" data-i18n="events.page_subtitle">
-            Welcome to the official Egypt America Center events portal. Browse photo galleries, watch high-definition machine video demos, and explore our global exhibition history.
-          </p>
-        </div>
-
-        <!-- Full Events & Exhibitions Grid -->
-        <div class="events-grid-full">
-
-          <!-- Event 1: ITMA Exhibition Milan -->
-          <div class="event-card-item">
-            <div class="event-media-slot photo-slot">
-              <div class="media-icon-box">📷</div>
-              <span class="media-tag-badge">PHOTO GALLERY</span>
-              <span class="media-upload-prompt">+ Click to Upload / View Event Photos</span>
+            <!-- Event 3: Cairo Fashion & Tex Exhibition -->
+            <div class="event-card-item">
+              <div class="event-media-slot photo-slot">
+                <div class="media-icon-box">📷</div>
+                <span class="media-tag-badge">EXHIBITION BOOTH</span>
+                <span class="media-upload-prompt">+ Click to Upload Booth Photos</span>
+              </div>
+              <div class="event-card-info">
+                <span class="event-meta-date">📍 CICC Cairo • 📅 March 2025</span>
+                <h3 class="event-item-title">Cairo Fashion & Tex Expo Pavilion</h3>
+                <p class="event-item-desc">Egypt America Center pavilion showcasing Megadyne drive belts, Golden Roc
+                  needles, and spare parts.</p>
+              </div>
             </div>
-            <div class="event-card-info">
-              <span class="event-meta-date">📍 Milan Exhibition Centre • 📅 October 2025</span>
-              <h3 class="event-item-title">ITMA International Textile Machinery Fair</h3>
-              <p class="event-item-desc">Photo coverage from EAC's official pavilion showcasing REL-TEX circular & Kauo Heng flat machinery.</p>
-            </div>
-          </div>
 
-          <!-- Event 2: Kauo Heng 3D Flat Knitting Machine Video Demo -->
-          <div class="event-card-item">
-            <div class="event-media-slot video-slot">
-              <div class="video-play-icon">▶</div>
-              <span class="media-tag-badge video-tag">VIDEO DEMO</span>
-              <span class="media-upload-prompt">🎥 Click to Play / Upload Machine Video</span>
+            <!-- Event 4: REL-TEX Circular Machine Operation Video -->
+            <div class="event-card-item">
+              <div class="event-media-slot video-slot">
+                <div class="video-play-icon">▶</div>
+                <span class="media-tag-badge video-tag">MACHINE VIDEO</span>
+                <span class="media-upload-prompt">🎥 Click to Play / Upload Machine Video</span>
+              </div>
+              <div class="event-card-info">
+                <span class="event-meta-date">📍 Client Factory • 🎥 4K Video Demo</span>
+                <h3 class="event-item-title">REL-TEX Circular Knitting Speed Test</h3>
+                <p class="event-item-desc">High RPM continuous knitting demonstration with zero thread breakage using
+                  Golden Roc precision needles.</p>
+              </div>
             </div>
-            <div class="event-card-info">
-              <span class="event-meta-date">📍 Mansoura Showroom • 🎥 HD Video Demo</span>
-              <h3 class="event-item-title">Kauo Heng 3D Flat Knitting Machine Demo</h3>
-              <p class="event-item-desc">High-definition video demonstration of 3D shoe upper and automated sweater knitting speed.</p>
-            </div>
-          </div>
 
-          <!-- Event 3: Cairo Fashion & Tex Exhibition -->
-          <div class="event-card-item">
-            <div class="event-media-slot photo-slot">
-              <div class="media-icon-box">📷</div>
-              <span class="media-tag-badge">EXHIBITION BOOTH</span>
-              <span class="media-upload-prompt">+ Click to Upload Booth Photos</span>
+            <!-- Event 5: Factory Launch Ceremony -->
+            <div class="event-card-item">
+              <div class="event-media-slot photo-slot">
+                <div class="media-icon-box">📷</div>
+                <span class="media-tag-badge">FACTORY LAUNCH</span>
+                <span class="media-upload-prompt">+ Click to Upload Event Photos</span>
+              </div>
+              <div class="event-card-info">
+                <span class="event-meta-date">📍 El Mahalla El Kubra • 📅 January 2025</span>
+                <h3 class="event-item-title">Turnkey Factory Line Inauguration</h3>
+                <p class="event-item-desc">Celebrating the successful installation of 12 new circular knitting units
+                  with
+                  Megadyne drive systems.</p>
+              </div>
             </div>
-            <div class="event-card-info">
-              <span class="event-meta-date">📍 CICC Cairo • 📅 March 2025</span>
-              <h3 class="event-item-title">Cairo Fashion & Tex Expo Pavilion</h3>
-              <p class="event-item-desc">Egypt America Center pavilion showcasing Megadyne drive belts, Golden Roc needles, and spare parts.</p>
-            </div>
-          </div>
 
-          <!-- Event 4: REL-TEX Circular Machine Operation Video -->
-          <div class="event-card-item">
-            <div class="event-media-slot video-slot">
-              <div class="video-play-icon">▶</div>
-              <span class="media-tag-badge video-tag">MACHINE VIDEO</span>
-              <span class="media-upload-prompt">🎥 Click to Play / Upload Machine Video</span>
+            <!-- Event 6: Technical Maintenance Workshop Video -->
+            <div class="event-card-item">
+              <div class="event-media-slot video-slot">
+                <div class="video-play-icon">▶</div>
+                <span class="media-tag-badge video-tag">WORKSHOP VIDEO</span>
+                <span class="media-upload-prompt">🎥 Click to Play / Upload Training Video</span>
+              </div>
+              <div class="event-card-info">
+                <span class="event-meta-date">📍 EAC Service Center • 🎥 Training Video</span>
+                <h3 class="event-item-title">Engineer Calibration & Maintenance Workshop</h3>
+                <p class="event-item-desc">Educational video tutorial covering oiling protocols, cylinder alignment, and
+                  feeder calibration.</p>
+              </div>
             </div>
-            <div class="event-card-info">
-              <span class="event-meta-date">📍 Client Factory • 🎥 4K Video Demo</span>
-              <h3 class="event-item-title">REL-TEX Circular Knitting Speed Test</h3>
-              <p class="event-item-desc">High RPM continuous knitting demonstration with zero thread breakage using Golden Roc precision needles.</p>
-            </div>
-          </div>
 
-          <!-- Event 5: Factory Launch Ceremony -->
-          <div class="event-card-item">
-            <div class="event-media-slot photo-slot">
-              <div class="media-icon-box">📷</div>
-              <span class="media-tag-badge">FACTORY LAUNCH</span>
-              <span class="media-upload-prompt">+ Click to Upload Event Photos</span>
-            </div>
-            <div class="event-card-info">
-              <span class="event-meta-date">📍 El Mahalla El Kubra • 📅 January 2025</span>
-              <h3 class="event-item-title">Turnkey Factory Line Inauguration</h3>
-              <p class="event-item-desc">Celebrating the successful installation of 12 new circular knitting units with Megadyne drive systems.</p>
-            </div>
-          </div>
-
-          <!-- Event 6: Technical Maintenance Workshop Video -->
-          <div class="event-card-item">
-            <div class="event-media-slot video-slot">
-              <div class="video-play-icon">▶</div>
-              <span class="media-tag-badge video-tag">WORKSHOP VIDEO</span>
-              <span class="media-upload-prompt">🎥 Click to Play / Upload Training Video</span>
-            </div>
-            <div class="event-card-info">
-              <span class="event-meta-date">📍 EAC Service Center • 🎥 Training Video</span>
-              <h3 class="event-item-title">Engineer Calibration & Maintenance Workshop</h3>
-              <p class="event-item-desc">Educational video tutorial covering oiling protocols, cylinder alignment, and feeder calibration.</p>
-            </div>
           </div>
 
         </div>
+      </section>
 
-      </div>
-    </section>
-
-    <!-- VIEW 5: CONTACT -->
-    <section id="view-contact" class="page-view">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-badge" data-i18n="contact.badge">Get In Touch</div>
-          <h2 data-i18n="contact.title">Contact Our Sales & Technical Team</h2>
-          <p data-i18n="contact.subtitle">Have a machinery inquiry or urgent spare parts requirement? Speak with our
-            multi-lingual specialists.</p>
-        </div>
-
-        <div class="contact-layout-grid">
-          <!-- Contact Info Panel -->
-          <div class="contact-info-panel glass-panel">
-            <div class="info-item">
-              <div class="info-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
-              </div>
-              <div class="info-details">
-                <h4 data-i18n="contact.address_title">Headquarters Address</h4>
-                <p><a href="https://maps.app.goo.gl/nto3JL4cVCN65D776" target="_blank" rel="noopener"
-                    class="contact-click-link" style="color: inherit;" data-i18n="contact.address_val">Masaken El
-                    Shennawy, Next to Al Tawhid Mosque, Building 2, Entrance A, Mansoura, Egypt</a></p>
-              </div>
-            </div>
-
-            <div class="info-item">
-              <div class="info-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path
-                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg>
-              </div>
-              <div class="info-details">
-                <h4 data-i18n="contact.phone_title">Phone & Hotline</h4>
-                <p><a href="tel:+201001339300" class="contact-click-link" data-i18n="contact.phone_val">+20 10
-                    01339300</a></p>
-              </div>
-            </div>
-
-            <div class="info-item">
-              <div class="info-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path
-                    d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-                </svg>
-              </div>
-              <div class="info-details">
-                <h4 data-i18n="contact.whatsapp_title">Instant WhatsApp Support</h4>
-                <p><a href="https://wa.me/201001339300" target="_blank" rel="noopener"
-                    class="contact-click-link gold-text" data-i18n="contact.whatsapp_val">+20 10 01339300</a></p>
-              </div>
-            </div>
-
-            <div class="info-item">
-              <div class="info-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="2" y="4" width="20" height="16" rx="2" />
-                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                </svg>
-              </div>
-              <div class="info-details">
-                <h4 data-i18n="contact.email_title">Official Email</h4>
-                <p><a href="mailto:info@egypt-american.com" class="contact-click-link"
-                    data-i18n="contact.email_val">info@egypt-american.com</a></p>
-              </div>
-            </div>
-
-            <div class="info-item">
-              <div class="info-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10" />
-                  <polyline points="12 6 12 12 16 14" />
-                </svg>
-              </div>
-              <div class="info-details">
-                <h4 data-i18n="contact.hours_title">Business Hours</h4>
-                <p data-i18n="contact.hours_val">Mon - Sat: 08:00 - 18:00 (UTC+8)</p>
-              </div>
-            </div>
-
-            <div class="info-item">
-              <div class="info-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                </svg>
-              </div>
-              <div class="info-details">
-                <h4>Facebook</h4>
-                <p><a href="https://www.facebook.com/EgyptAmericaCenter/" target="_blank" rel="noopener"
-                    class="contact-click-link">Egypt America Center</a></p>
-              </div>
-            </div>
-
-            <!-- Styled Map View -->
-            <div class="map-placeholder">
-              <iframe
-                src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=31.0457415,31.3945706&t=&z=16&ie=UTF8&iwloc=B&output=embed"
-                loading="lazy"></iframe>
-            </div>
+      <!-- VIEW 5: CONTACT -->
+      <section id="view-contact" class="page-view">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-badge" data-i18n="contact.badge">Get In Touch</div>
+            <h2 data-i18n="contact.title">Contact Our Sales & Technical Team</h2>
+            <p data-i18n="contact.subtitle">Have a machinery inquiry or urgent spare parts requirement? Speak with our
+              multi-lingual specialists.</p>
           </div>
 
-          <!-- Professional Contact Form -->
-          <div class="contact-form-panel glass-panel">
-            <h3 data-i18n="contact.title">Official Inquiry Form</h3>
-            <form id="contact-form">
-              <div class="form-group">
-                <label data-i18n="contact.form_name">Full Name</label>
-                <input type="text" name="name" class="form-control" required />
-              </div>
-              <div class="form-group">
-                <label data-i18n="contact.form_company">Company Name</label>
-                <input type="text" name="company" class="form-control" required />
-              </div>
-              <div class="form-group">
-                <label data-i18n="contact.form_phone">Phone Number</label>
-                <input type="tel" name="phone" class="form-control" required />
-              </div>
-              <div class="form-group">
-                <label data-i18n="contact.form_email">Corporate Email Address</label>
-                <input type="email" name="email" class="form-control" required />
-              </div>
-              <div class="form-group">
-                <label data-i18n="contact.form_product">Product Needed / Inquiry Type</label>
-                <input type="text" id="contact-product-input" name="product" class="form-control"
-                  placeholder="e.g. Center Circle CC-900 or Megadyne AT10 Belts" />
-              </div>
-              <div class="form-group">
-                <label data-i18n="contact.form_message">Detailed Message / Specifications</label>
-                <textarea id="contact-message-input" name="message" class="form-control" required></textarea>
+          <div class="contact-layout-grid">
+            <!-- Contact Info Panel -->
+            <div class="contact-info-panel glass-panel">
+              <div class="info-item">
+                <div class="info-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </div>
+                <div class="info-details">
+                  <h4 data-i18n="contact.address_title">Headquarters Address</h4>
+                  <p><a href="https://maps.app.goo.gl/nto3JL4cVCN65D776" target="_blank" rel="noopener"
+                      class="contact-click-link" style="color: inherit;" data-i18n="contact.address_val">Masaken El
+                      Shennawy, Next to Al Tawhid Mosque, Building 2, Entrance A, Mansoura, Egypt</a></p>
+                </div>
               </div>
 
-              <button type="submit" class="btn btn-gold" style="width: 100%;" data-i18n="contact.form_submit">Send
-                Official Inquiry</button>
+              <div class="info-item">
+                <div class="info-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                </div>
+                <div class="info-details">
+                  <h4 data-i18n="contact.phone_title">Phone & Hotline</h4>
+                  <p><a href="tel:+201001339300" class="contact-click-link" data-i18n="contact.phone_val">+20 10
+                      01339300</a></p>
+                </div>
+              </div>
 
-              <div id="contact-form-status" class="form-status"></div>
+              <div class="info-item">
+                <div class="info-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                      d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                  </svg>
+                </div>
+                <div class="info-details">
+                  <h4 data-i18n="contact.whatsapp_title">Instant WhatsApp Support</h4>
+                  <p><a href="https://wa.me/201001339300" target="_blank" rel="noopener"
+                      class="contact-click-link gold-text" data-i18n="contact.whatsapp_val">+20 10 01339300</a></p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                  </svg>
+                </div>
+                <div class="info-details">
+                  <h4 data-i18n="contact.email_title">Official Email</h4>
+                  <p><a href="mailto:info@egypt-american.com" class="contact-click-link"
+                      data-i18n="contact.email_val">info@egypt-american.com</a></p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                </div>
+                <div class="info-details">
+                  <h4 data-i18n="contact.hours_title">Business Hours</h4>
+                  <p data-i18n="contact.hours_val">Mon - Sat: 08:00 - 18:00 (UTC+8)</p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                  </svg>
+                </div>
+                <div class="info-details">
+                  <h4>Facebook</h4>
+                  <p><a href="https://www.facebook.com/EgyptAmericaCenter/" target="_blank" rel="noopener"
+                      class="contact-click-link">Egypt America Center</a></p>
+                </div>
+              </div>
+
+              <!-- Styled Map View -->
+              <div class="map-placeholder">
+                <iframe
+                  src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=31.0457415,31.3945706&t=&z=16&ie=UTF8&iwloc=B&output=embed"
+                  loading="lazy"></iframe>
+              </div>
+            </div>
+
+            <!-- Professional Contact Form -->
+            <div class="contact-form-panel glass-panel">
+              <h3 data-i18n="contact.title">Official Inquiry Form</h3>
+              <form id="contact-form">
+                <div class="form-group">
+                  <label data-i18n="contact.form_name">Full Name</label>
+                  <input type="text" name="name" class="form-control" required />
+                </div>
+                <div class="form-group">
+                  <label data-i18n="contact.form_company">Company Name</label>
+                  <input type="text" name="company" class="form-control" required />
+                </div>
+                <div class="form-group">
+                  <label data-i18n="contact.form_phone">Phone Number</label>
+                  <input type="tel" name="phone" class="form-control" required />
+                </div>
+                <div class="form-group">
+                  <label data-i18n="contact.form_email">Corporate Email Address</label>
+                  <input type="email" name="email" class="form-control" required />
+                </div>
+                <div class="form-group">
+                  <label data-i18n="contact.form_product">Product Needed / Inquiry Type</label>
+                  <input type="text" id="contact-product-input" name="product" class="form-control"
+                    placeholder="e.g. Center Circle CC-900 or Megadyne AT10 Belts" />
+                </div>
+                <div class="form-group">
+                  <label data-i18n="contact.form_message">Detailed Message / Specifications</label>
+                  <textarea id="contact-message-input" name="message" class="form-control" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-gold" style="width: 100%;" data-i18n="contact.form_submit">Send
+                  Official Inquiry</button>
+
+                <div id="contact-form-status" class="form-status"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 6: SECRET CLIENT ADMIN DASHBOARD (#admin) -->
+      <section id="view-admin" class="page-view">
+        <div class="container" style="max-width: 950px; padding-top: 20px; padding-bottom: 80px; min-height: 85vh;">
+
+          <!-- ADMIN LOGIN CARD WITH 2FA AUTHENTICATION -->
+          <div id="admin-login-card" class="glass-panel"
+            style="max-width: 460px; margin: 40px auto; padding: 35px; text-align: center;">
+            <div class="brand-icon-mesh" style="margin: 0 auto 20px; width: 60px; height: 60px; font-size: 1.8rem;">🔒
+            </div>
+            <h2 style="margin-bottom: 8px;" data-i18n="admin.title">لوحة تحكم إدارة المنتجات</h2>
+            <p style="color: var(--text-dark-secondary); font-size: 0.9rem; margin-bottom: 24px;"
+              data-i18n="admin.login_subtitle">تسجيل الدخول الآمن بخاصية التحقق الثنائي (2FA)</p>
+
+            <!-- STEP 1: PASSWORD FORM -->
+            <form id="admin-login-form">
+              <div class="form-group" style="margin-bottom: 20px;">
+                <label style="display: block; text-align: right; margin-bottom: 6px; font-weight: 600;"
+                  data-i18n="admin.step1">الخطوة 1: كلمة السر</label>
+                <input type="password" id="admin-passcode-input" class="form-control" placeholder="أدخل كلمة السر"
+                  required style="text-align: center; font-size: 1.1rem; letter-spacing: 3px;" />
+              </div>
+              <button type="submit" class="btn btn-gold" style="width: 100%;" data-i18n="admin.step1_btn">المتابعة
+                للتحقق
+                الثنائي 🔑</button>
+              <div id="admin-login-error" style="color: #ff4d4d; font-size: 0.85rem; margin-top: 12px; display: none;">
+                كلمة السر غير صحيحة!</div>
             </form>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- VIEW 6: SECRET CLIENT ADMIN DASHBOARD (#admin) -->
-    <section id="view-admin" class="page-view">
-      <div class="container" style="max-width: 950px; padding-top: 130px; padding-bottom: 80px; min-height: 85vh;">
-
-        <!-- ADMIN LOGIN CARD WITH 2FA AUTHENTICATION -->
-        <div id="admin-login-card" class="glass-panel"
-          style="max-width: 460px; margin: 40px auto; padding: 35px; text-align: center;">
-          <div class="brand-icon-mesh" style="margin: 0 auto 20px; width: 60px; height: 60px; font-size: 1.8rem;">🔒
-          </div>
-          <h2 style="margin-bottom: 8px;" data-i18n="admin.title">لوحة تحكم إدارة المنتجات</h2>
-          <p style="color: var(--text-dark-secondary); font-size: 0.9rem; margin-bottom: 24px;"
-            data-i18n="admin.login_subtitle">تسجيل الدخول الآمن بخاصية التحقق الثنائي (2FA)</p>
-
-          <!-- STEP 1: PASSWORD FORM -->
-          <form id="admin-login-form">
-            <div class="form-group" style="margin-bottom: 20px;">
-              <label style="display: block; text-align: right; margin-bottom: 6px; font-weight: 600;"
-                data-i18n="admin.step1">الخطوة 1: كلمة السر</label>
-              <input type="password" id="admin-passcode-input" class="form-control" placeholder="أدخل كلمة السر"
-                required style="text-align: center; font-size: 1.1rem; letter-spacing: 3px;" />
-            </div>
-            <button type="submit" class="btn btn-gold" style="width: 100%;" data-i18n="admin.step1_btn">المتابعة للتحقق
-              الثنائي 🔑</button>
-            <div id="admin-login-error" style="color: #ff4d4d; font-size: 0.85rem; margin-top: 12px; display: none;">
-              كلمة السر غير صحيحة!</div>
-          </form>
-
-          <!-- STEP 2: 2FA PHONE VERIFICATION FORM (Initially hidden) -->
-          <form id="admin-2fa-form" style="display: none; margin-top: 10px;">
-            <div class="form-group" style="margin-bottom: 20px;">
-              <label style="display: block; text-align: right; margin-bottom: 6px; font-weight: 600;"
-                data-i18n="admin.step2">الخطوة 2: رقم الموبايل المصرح به (2FA)</label>
-              <input type="tel" id="admin-2fa-phone-input" class="form-control" placeholder="01x xxxx xxxx" required
-                style="text-align: center; font-size: 1.1rem; letter-spacing: 2px;" />
-            </div>
-            <button type="submit" class="btn btn-gold" style="width: 100%;" data-i18n="admin.step2_btn">تأكيد الهوية
-              ودخول اللوحة 🔐</button>
-            <div id="admin-2fa-error" style="color: #ff4d4d; font-size: 0.85rem; margin-top: 12px; display: none;">رقم
-              الموبايل المصرح به غير صحيح!</div>
-          </form>
-        </div>
-
-        <!-- ADMIN DASHBOARD PANEL (Shown after authentication) -->
-        <div id="admin-dashboard-panel" class="admin-cyber-dashboard" style="display: none; padding: 35px;">
-
-          <!-- ADMIN DASHBOARD HEADER BANNER -->
-          <div class="admin-header-banner">
-            <div class="admin-brand-lockup">
-              <div class="admin-shield-icon">
-                <span class="shield-pulse"></span>
-                🛡️
+            <!-- STEP 2: 2FA PHONE VERIFICATION FORM (Initially hidden) -->
+            <form id="admin-2fa-form" style="display: none; margin-top: 10px;">
+              <div class="form-group" style="margin-bottom: 20px;">
+                <label style="display: block; text-align: right; margin-bottom: 6px; font-weight: 600;"
+                  data-i18n="admin.step2">الخطوة 2: رقم الموبايل المصرح به (2FA)</label>
+                <input type="tel" id="admin-2fa-phone-input" class="form-control" placeholder="01x xxxx xxxx" required
+                  style="text-align: center; font-size: 1.1rem; letter-spacing: 2px;" />
               </div>
-              <div>
-                <div class="admin-chip-badge">🔐 CONTROL HUB • 2FA ACTIVE</div>
-                <h1 style="font-size: 1.5rem; margin-top: 4px; color: #ffffff;" data-i18n="admin.hub_title">لوحة تحكم
-                  إدارة المنتجات | Admin Portal</h1>
-                <p style="color: rgba(255,255,255,0.7); font-size: 0.88rem; margin-top: 2px;"
-                  data-i18n="admin.hub_subtitle">إدارة وحفظ وتعديل المنتجات الحية أوفلاين/أونلاين بثوان معدودة</p>
-              </div>
-            </div>
-            <button id="admin-logout-btn" class="btn btn-outline admin-logout-custom-btn" data-i18n="admin.logout">تسجيل
-              الخروج 🚪</button>
-          </div>
-
-          <!-- ADMIN QUICK STATS METRICS BAR -->
-          <div class="admin-stats-grid">
-            <div class="admin-stat-card">
-              <div class="stat-icon">📦</div>
-              <div>
-                <div class="stat-value" id="admin-stat-total">0</div>
-                <div class="stat-label" data-i18n="admin.stat_total">إجمالي المنتجات</div>
-              </div>
-            </div>
-            <div class="admin-stat-card">
-              <div class="stat-icon">⚙️</div>
-              <div>
-                <div class="stat-value" id="admin-stat-machinery">0</div>
-                <div class="stat-label" data-i18n="admin.stat_machinery">آلات ومعدات</div>
-              </div>
-            </div>
-            <div class="admin-stat-card">
-              <div class="stat-icon">🧵</div>
-              <div>
-                <div class="stat-value" id="admin-stat-parts">0</div>
-                <div class="stat-label" data-i18n="admin.stat_parts">قطع غيار ومحامل</div>
-              </div>
-            </div>
-            <div class="admin-stat-card">
-              <div class="stat-icon">📩</div>
-              <div>
-                <div class="stat-value" id="admin-stat-inquiries">0</div>
-                <div class="stat-label">الرسائل والطلبات</div>
-              </div>
-            </div>
-            <div class="admin-stat-card">
-              <div class="stat-icon">🛡️</div>
-              <div>
-                <div class="stat-value" style="color: #00ffaa; font-size: 1.1rem; font-weight: 700;"
-                  data-i18n="admin.sec_active">نشط وحصين</div>
-                <div class="stat-label" data-i18n="admin.stat_sec">حالة الأمان (2FA)</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- INCOMING INQUIRIES & MESSAGES PANEL -->
-          <div class="admin-inquiries-card glass-panel"
-            style="padding: 24px; margin-bottom: 35px; border: 1px solid var(--accent-gold);">
-            <div
-              style="display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
-              <h3
-                style="color: var(--accent-gold); display: flex; align-items: center; gap: 10px; margin: 0; font-size: 1.25rem;">
-                📩 أحدث 5 رسائل وطلبات واردة (Latest 5 Inquiries & Quotes)
-              </h3>
-              <button id="admin-clear-inquiries-btn" class="btn btn-outline"
-                style="font-size: 0.8rem; padding: 6px 12px; border-color: #ff4d4d; color: #ff4d4d;">مسح جميع الرسائل
-                🧹</button>
-            </div>
-            <div id="admin-inquiries-list"></div>
-          </div>
-
-          <!-- ADD NEW PRODUCT FORM -->
-          <div class="admin-add-card glass-panel"
-            style="padding: 24px; margin-bottom: 40px; border: 1px solid var(--accent-gold);">
-            <h3 style="margin-bottom: 20px; color: var(--accent-gold); display: flex; align-items: center; gap: 10px;"
-              data-i18n="admin.add_title">➕ إضافة منتج جديد للكتالوج</h3>
-
-            <form id="admin-add-product-form">
-              <div
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-bottom: 15px;">
-                <div class="form-group">
-                  <label>اسم المنتج بالعربي 🇪🇬 (Arabic Title)</label>
-                  <input type="text" id="admin-prod-name-ar" class="form-control"
-                    placeholder="مثال: أسطوانة سنتر سيركل عالية الدقة CC-900" required />
-                </div>
-                <div class="form-group">
-                  <label>English Title 🇺🇸 (الاسم بالإنجليزي)</label>
-                  <input type="text" id="admin-prod-name-en" class="form-control"
-                    placeholder="e.g. Center Circle Precision Cylinder CC-900" />
-                </div>
-                <div class="form-group">
-                  <label>中文名称 🇨🇳 (الاسم بالصيني)</label>
-                  <input type="text" id="admin-prod-name-zh" class="form-control" placeholder="例: 中环精密针筒 CC-900" />
-                </div>
-              </div>
-
-              <div
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 15px;">
-                <div class="form-group">
-                  <label>الفئة (Category)</label>
-                  <select id="admin-prod-category" class="form-control" required>
-                    <option value="machinery">آلات ومعدات (Machinery)</option>
-                    <option value="spare_parts">قطع غيار (Spare Parts)</option>
-                  </select>
-                </div>
-
-                <div class="form-group">
-                  <label>الوكالة / الشركة (Brand)</label>
-                  <select id="admin-prod-brand" class="form-control" required>
-                    <option value="REL-TEX">REL-TEX (تايوان 🇹🇼)</option>
-                    <option value="GOLDEN ROC">GOLDEN ROC (الصين 🇨🇳)</option>
-                    <option value="SMG / NBSMG">SMG / NBSMG (الصين 🇨🇳)</option>
-                    <option value="Kauo Heng">Kauo Heng (تايوان 🇹🇼)</option>
-                    <option value="DAHU">DAHU (الصين 🇨🇳)</option>
-                    <option value="V-STAR">V-STAR (الصين 🇨🇳)</option>
-                    <option value="BAIYANG">BAIYANG (الصين 🇨🇳)</option>
-                    <option value="KING ULTRASONIC">KING ULTRASONIC (الصين 🇨🇳)</option>
-                    <option value="Center Circle">Center Circle (تايوان 🇹🇼)</option>
-                    <option value="Megadyne">Megadyne (إيطاليا 🇮🇹)</option>
-                    <option value="General OEM">General Industrial OEM</option>
-                  </select>
-                </div>
-
-                <div class="form-group">
-                  <label>كود الموديل أو OEM Code</label>
-                  <input type="text" id="admin-prod-code" class="form-control" placeholder="مثال: OEM-CC-908"
-                    required />
-                </div>
-              </div>
-
-              <div
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; margin-top: 15px;">
-                <div class="form-group">
-                  <label>🖼️ ارفع صورة من جهازك مباشرة (Direct File Upload)</label>
-                  <input type="file" id="admin-prod-file" class="form-control" accept="image/*" style="padding: 9px;" />
-                </div>
-                <div class="form-group">
-                  <label>أو ضع رابط صورة أونلاين (Direct Image URL)</label>
-                  <input type="url" id="admin-prod-image" class="form-control"
-                    placeholder="https://example.com/image.jpg" />
-                </div>
-              </div>
-
-              <div
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-top: 15px;">
-                <div class="form-group">
-                  <label>الوصف بالعربي 🇪🇬</label>
-                  <textarea id="admin-prod-desc-ar" class="form-control" rows="3"
-                    placeholder="اكتب مواصفات المنتج والصلابة والأبعاد بالعربي..." required></textarea>
-                </div>
-                <div class="form-group">
-                  <label>English Description 🇺🇸</label>
-                  <textarea id="admin-prod-desc-en" class="form-control" rows="3"
-                    placeholder="Write product specifications in English..."></textarea>
-                </div>
-              </div>
-
-              <button type="submit" class="btn btn-gold"
-                style="margin-top: 20px; width: 100%; font-size: 1.1rem; font-weight: 700;">حفظ ونشر المنتج فوراً
-                🚀</button>
-              <div id="admin-add-status" class="form-status" style="margin-top: 15px;"></div>
+              <button type="submit" class="btn btn-gold" style="width: 100%;" data-i18n="admin.step2_btn">تأكيد الهوية
+                ودخول اللوحة 🔐</button>
+              <div id="admin-2fa-error" style="color: #ff4d4d; font-size: 0.85rem; margin-top: 12px; display: none;">رقم
+                الموبايل المصرح به غير صحيح!</div>
             </form>
           </div>
 
-          <!-- CURRENT PRODUCTS LIST IN ADMIN -->
-          <div>
-            <h3 style="margin-bottom: 20px;">📋 المنتجات المعروضة حالياً (<span id="admin-prod-count">0</span>)</h3>
-            <div id="admin-products-list" style="display: grid; gap: 15px;"></div>
+          <!-- ADMIN DASHBOARD PANEL (Shown after authentication) -->
+          <div id="admin-dashboard-panel" class="admin-cyber-dashboard" style="display: none; padding: 35px;">
+
+            <!-- ADMIN DASHBOARD HEADER BANNER -->
+            <div class="admin-header-banner">
+              <div class="admin-brand-lockup">
+                <div class="admin-shield-icon">
+                  <span class="shield-pulse"></span>
+                  🛡️
+                </div>
+                <div>
+                  <div class="admin-chip-badge">🔐 CONTROL HUB • 2FA ACTIVE</div>
+                  <h1 style="font-size: 1.5rem; margin-top: 4px; color: #ffffff;" data-i18n="admin.hub_title">لوحة تحكم
+                    إدارة المنتجات | Admin Portal</h1>
+                  <p style="color: rgba(255,255,255,0.7); font-size: 0.88rem; margin-top: 2px;"
+                    data-i18n="admin.hub_subtitle">إدارة وحفظ وتعديل المنتجات الحية أوفلاين/أونلاين بثوان معدودة</p>
+                </div>
+              </div>
+              <button id="admin-logout-btn" class="btn btn-outline admin-logout-custom-btn"
+                data-i18n="admin.logout">تسجيل
+                الخروج 🚪</button>
+            </div>
+
+            <!-- ADMIN QUICK STATS METRICS BAR -->
+            <div class="admin-stats-grid">
+              <div class="admin-stat-card">
+                <div class="stat-icon">📦</div>
+                <div>
+                  <div class="stat-value" id="admin-stat-total">0</div>
+                  <div class="stat-label" data-i18n="admin.stat_total">إجمالي المنتجات</div>
+                </div>
+              </div>
+              <div class="admin-stat-card">
+                <div class="stat-icon">⚙️</div>
+                <div>
+                  <div class="stat-value" id="admin-stat-machinery">0</div>
+                  <div class="stat-label" data-i18n="admin.stat_machinery">آلات ومعدات</div>
+                </div>
+              </div>
+              <div class="admin-stat-card">
+                <div class="stat-icon">🧵</div>
+                <div>
+                  <div class="stat-value" id="admin-stat-parts">0</div>
+                  <div class="stat-label" data-i18n="admin.stat_parts">قطع غيار ومحامل</div>
+                </div>
+              </div>
+              <div class="admin-stat-card">
+                <div class="stat-icon">📩</div>
+                <div>
+                  <div class="stat-value" id="admin-stat-inquiries">0</div>
+                  <div class="stat-label">الرسائل والطلبات</div>
+                </div>
+              </div>
+              <div class="admin-stat-card">
+                <div class="stat-icon">🛡️</div>
+                <div>
+                  <div class="stat-value" style="color: #00ffaa; font-size: 1.1rem; font-weight: 700;"
+                    data-i18n="admin.sec_active">نشط وحصين</div>
+                  <div class="stat-label" data-i18n="admin.stat_sec">حالة الأمان (2FA)</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- INCOMING INQUIRIES & MESSAGES PANEL -->
+            <div class="admin-inquiries-card glass-panel"
+              style="padding: 24px; margin-bottom: 35px; border: 1px solid var(--accent-gold);">
+              <div
+                style="display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
+                <h3
+                  style="color: var(--accent-gold); display: flex; align-items: center; gap: 10px; margin: 0; font-size: 1.25rem;">
+                  📩 أحدث 5 رسائل وطلبات واردة (Latest 5 Inquiries & Quotes)
+                </h3>
+                <button id="admin-clear-inquiries-btn" class="btn btn-outline"
+                  style="font-size: 0.8rem; padding: 6px 12px; border-color: #ff4d4d; color: #ff4d4d;">مسح جميع الرسائل
+                  🧹</button>
+              </div>
+              <div id="admin-inquiries-list"></div>
+            </div>
+
+            <!-- ADD NEW PRODUCT FORM -->
+            <div class="admin-add-card glass-panel"
+              style="padding: 24px; margin-bottom: 40px; border: 1px solid var(--accent-gold);">
+              <h3 style="margin-bottom: 20px; color: var(--accent-gold); display: flex; align-items: center; gap: 10px;"
+                data-i18n="admin.add_title">➕ إضافة منتج جديد للكتالوج</h3>
+
+              <form id="admin-add-product-form">
+                <div
+                  style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-bottom: 15px;">
+                  <div class="form-group">
+                    <label>اسم المنتج بالعربي 🇪🇬 (Arabic Title)</label>
+                    <input type="text" id="admin-prod-name-ar" class="form-control"
+                      placeholder="مثال: أسطوانة سنتر سيركل عالية الدقة CC-900" required />
+                  </div>
+                  <div class="form-group">
+                    <label>English Title 🇺🇸 (الاسم بالإنجليزي)</label>
+                    <input type="text" id="admin-prod-name-en" class="form-control"
+                      placeholder="e.g. Center Circle Precision Cylinder CC-900" />
+                  </div>
+                  <div class="form-group">
+                    <label>中文名称 🇨🇳 (الاسم بالصيني)</label>
+                    <input type="text" id="admin-prod-name-zh" class="form-control" placeholder="例: 中环精密针筒 CC-900" />
+                  </div>
+                </div>
+
+                <div
+                  style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 15px;">
+                  <div class="form-group">
+                    <label>الفئة (Category)</label>
+                    <select id="admin-prod-category" class="form-control" required>
+                      <option value="machinery">آلات ومعدات (Machinery)</option>
+                      <option value="spare_parts">قطع غيار (Spare Parts)</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label>الوكالة / الشركة (Brand)</label>
+                    <select id="admin-prod-brand" class="form-control" required>
+                      <option value="REL-TEX">REL-TEX (تايوان 🇹🇼)</option>
+                      <option value="GOLDEN ROC">GOLDEN ROC (الصين 🇨🇳)</option>
+                      <option value="SMG / NBSMG">SMG / NBSMG (الصين 🇨🇳)</option>
+                      <option value="Kauo Heng">Kauo Heng (تايوان 🇹🇼)</option>
+                      <option value="DAHU">DAHU (الصين 🇨🇳)</option>
+                      <option value="V-STAR">V-STAR (الصين 🇨🇳)</option>
+                      <option value="BAIYANG">BAIYANG (الصين 🇨🇳)</option>
+                      <option value="KING ULTRASONIC">KING ULTRASONIC (الصين 🇨🇳)</option>
+                      <option value="Center Circle">Center Circle (تايوان 🇹🇼)</option>
+                      <option value="Megadyne">Megadyne (إيطاليا 🇮🇹)</option>
+                      <option value="General OEM">General Industrial OEM</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label>كود الموديل أو OEM Code</label>
+                    <input type="text" id="admin-prod-code" class="form-control" placeholder="مثال: OEM-CC-908"
+                      required />
+                  </div>
+                </div>
+
+                <div
+                  style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; margin-top: 15px;">
+                  <div class="form-group">
+                    <label>🖼️ ارفع صورة من جهازك مباشرة (Direct File Upload)</label>
+                    <input type="file" id="admin-prod-file" class="form-control" accept="image/*"
+                      style="padding: 9px;" />
+                  </div>
+                  <div class="form-group">
+                    <label>أو ضع رابط صورة أونلاين (Direct Image URL)</label>
+                    <input type="url" id="admin-prod-image" class="form-control"
+                      placeholder="https://example.com/image.jpg" />
+                  </div>
+                </div>
+
+                <div
+                  style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-top: 15px;">
+                  <div class="form-group">
+                    <label>الوصف بالعربي 🇪🇬</label>
+                    <textarea id="admin-prod-desc-ar" class="form-control" rows="3"
+                      placeholder="اكتب مواصفات المنتج والصلابة والأبعاد بالعربي..." required></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label>English Description 🇺🇸</label>
+                    <textarea id="admin-prod-desc-en" class="form-control" rows="3"
+                      placeholder="Write product specifications in English..."></textarea>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-gold"
+                  style="margin-top: 20px; width: 100%; font-size: 1.1rem; font-weight: 700;">حفظ ونشر المنتج فوراً
+                  🚀</button>
+                <div id="admin-add-status" class="form-status" style="margin-top: 15px;"></div>
+              </form>
+            </div>
+
+            <!-- CURRENT PRODUCTS LIST IN ADMIN -->
+            <div>
+              <h3 style="margin-bottom: 20px;">📋 المنتجات المعروضة حالياً (<span id="admin-prod-count">0</span>)</h3>
+              <div id="admin-products-list" style="display: grid; gap: 15px;"></div>
+            </div>
+
           </div>
 
         </div>
-
-      </div>
-    </section>
+      </section>
 
   </main>
 
@@ -1404,10 +1711,10 @@
   </footer>
 
   <!-- JavaScript Scripts (Cache Busted) -->
-  <script src="config.js"></script>
-  <script src="assets/js/data.js?v=3.0"></script>
-  <script src="assets/js/app.js?v=3.0"></script>
-  <script src="assets/js/homepage-engine.js?v=3.1"></script>
+  <script src="config.js?v=99.0"></script>
+  <script src="assets/js/data.js?v=99.0"></script>
+  <script src="assets/js/app.js?v=99.0"></script>
+  <script src="assets/js/homepage-engine.js?v=99.0"></script>
 </body>
 
 </html>

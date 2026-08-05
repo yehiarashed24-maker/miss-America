@@ -58,7 +58,7 @@ input_files = [
     "/Users/yousef/.gemini/antigravity-ide/brain/8557a9f9-66fc-409e-90fb-1d18f070f8fc/media__1785845706726.jpg",
     "/Users/yousef/.gemini/antigravity-ide/brain/8557a9f9-66fc-409e-90fb-1d18f070f8fc/media__1785845706746.jpg",
     "/Users/yousef/.gemini/antigravity-ide/brain/8557a9f9-66fc-409e-90fb-1d18f070f8fc/media__1785845706762.jpg",
-    "/Users/yousef/.gemini/antigravity-ide/brain/8557a9f9-66fc-409e-90fb-1d18f070f8fc/media__1785845706774.jpg",
+    "/Users/yousef/.gemini/antigravity-ide/brain/8df52a64-9cb7-4437-b631-36d2a5d983b1/media__1785874719838.jpg",
     "/Users/yousef/.gemini/antigravity-ide/brain/8557a9f9-66fc-409e-90fb-1d18f070f8fc/media__1785845706794.jpg"
 ]
 

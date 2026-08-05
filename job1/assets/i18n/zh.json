@@ -79,7 +79,47 @@
   "cta": {
     "title": "准备升级您的纺织制造工厂吗？",
     "desc": "立即咨询我们的国际工程师，获取定制机械配置或急件发货。",
-    "btn": "联系销售团队"
+    "btn": "联系销售团队",
+    "whatsapp": "WhatsApp 直连"
+  },
+  "network": {
+    "badge": "全球代理与代销网络",
+    "title": "全球代理网络 <span style=\"color: #D32F2F;\">• 埃及中东枢纽</span>",
+    "desc": "我们来自台湾、意大利、中国和德国的授权代理直接连接至埃及曼苏拉总部，为您提供极速物流与原厂正品备件。",
+    "pin_hq": "🇪🇬 总部 (埃及)",
+    "pin_taiwan": "🇹🇼 台湾 (Center Circle)",
+    "pin_italy": "🇮🇹 意大利 (Megadyne Belts)",
+    "pin_china": "🇨🇳 中国 (NBSMG & SMG)",
+    "pin_germany": "🇩🇪 德国 (德国精工)",
+    "pin_japan": "🇯🇵 日本 (工业电子)",
+    "info_title": "Egypt America Center - 埃及曼苏拉 (总部)",
+    "info_desc": "涵盖埃及及整个中东地区的纺织机械与原厂正品零部件直供与技术支持枢纽。",
+    "nodes": {
+      "egypt": {
+        "title": "Egypt America Center - 埃及曼苏拉 (总部)",
+        "desc": "涵盖埃及及整个中东地区的纺织机械与原厂正品零部件直供与技术支持枢纽。"
+      },
+      "china": {
+        "title": "中国代理网络 (NBSMG & SMG)",
+        "desc": "NBSMG & SMG 代理 (中国) - 纺织机械精密轴承与电子储纬器官方制造商。"
+      },
+      "taiwan": {
+        "title": "台湾代理网络 (Center Circle & Kauo Heng)",
+        "desc": "Center Circle & Kauo Heng 代理 (台湾) - 授权高速大圆机与电脑横机系统制造商。"
+      },
+      "italy": {
+        "title": "意大利代理网络 (Megadyne 同步带)",
+        "desc": "Megadyne 代理 (意大利) - 高品质聚氨酯与橡胶工业同步带授权分销商。"
+      },
+      "germany": {
+        "title": "德国精工技术网络 (德国配件)",
+        "desc": "德国精工合作 - 微米级高精度织针、沉降片及高耐磨合金零部件。"
+      },
+      "japan": {
+        "title": "日本电子与自动化网络 (工业电子)",
+        "desc": "日本自动化系统 - 纺织机械专用工业变频器与数控面板。"
+      }
+    }
   },
   "brands_page": {
     "badge": "官方授权代理品牌",
